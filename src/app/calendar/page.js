@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function SearchPage() {
+export default function CalendarPage() {
   return (
     <div>
       Calendar Page

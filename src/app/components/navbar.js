@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Navbar() {
   return (
-    <div>
+    <div style={{ display: "flex", background: "#FC6C81" }}>
       <div>EventHorizon</div>
       <nav>
         <ul>
@@ -17,7 +17,7 @@ export default function Navbar() {
         <li>
           <Image
             src="/circle-user.svg"
-            alt="Window icon"
+            alt=""
             width={36}
             height={36}
           />
@@ -25,7 +25,7 @@ export default function Navbar() {
         <li>
           <Image
             src="/night-day.svg"
-            alt="Window icon"
+            alt=""
             width={36}
             height={36}
           />
