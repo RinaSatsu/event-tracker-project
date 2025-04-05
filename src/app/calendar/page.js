@@ -1,69 +1,64 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Calendar from 'react-calendar';
 import { format, isSameDay } from 'date-fns';
 import 'react-calendar/dist/Calendar.css';
+import './calendar.css';
 
-const ConcertCalendar = ({ events = [] }) => {
+const concerts = [
+  { id: 1, name: "Green Day", date: new Date(2025, 5, 15), venue: "Rogers Centre" },
+  { id: 2, name: "Blink-182", date: new Date(2025, 6, 22), venue: "Budweiser Stage" },
+  { id: 3, name: "Foo Fighters", date: new Date(2025, 7, 5), venue: "Scotiabank Arena" },
+  { id: 4, name: "The Rolling Stones", date: new Date(2025, 5, 30), venue: "Rogers Centre" },
+  { id: 5, name: "Metallica", date: new Date(2025, 8, 12), venue: "Budweiser Stage" },
+  { id: 6, name: "Pearl Jam", date: new Date(2025, 7, 18), venue: "Scotiabank Arena" },
+  { id: 7, name: "Red Hot Chili Peppers", date: new Date(2025, 6, 8), venue: "Rogers Centre" },
+  { id: 8, name: "Arctic Monkeys", date: new Date(2025, 8, 3), venue: "Budweiser Stage" },
+  { id: 9, name: "Queens of the Stone Age", date: new Date(2025, 7, 25), venue: "History" },
+  { id: 10, name: "The Smashing Pumpkins", date: new Date(2025, 6, 14), venue: "Budweiser Stage" }
+]; //months in javascript are from 0-11, which is why it's showing the 5th month as June and not May.. weird! 
+
+export default function ConcertCalendarPage() {
   const [date, setDate] = useState(new Date());
-  const [view, setView] = useState('month');
-
-  const hasEvents = (date) => {
-    return events.some(event => isSameDay(event.date, date));
-  };
-
-  const getEventsForDate = (date) => {
-    return events.filter(event => isSameDay(event.date, date));
-  };
-
-  const tileContent = ({ date, view }) => {
-    if (view !== 'month') return null;
-    return hasEvents(date) ? <div className="event-indicator">🎵</div> : null;
-  };
-
-  const tileClassName = ({ date, view }) => {
-    if (view !== 'month') return '';
-    return hasEvents(date) ? 'has-events' : '';
-  };
+  const todaysConcerts = concerts.filter(show => isSameDay(show.date, date));
 
   return (
-    <div className="concert-calendar">
-      <h2>Upcoming Concerts</h2>
+    <div className="calendar-page">
+      <h1>2025 Toronto Rock Concerts</h1>
       
-      <Calendar
-        onChange={setDate}
-        value={date}
-        view={view}
-        onViewChange={({ view }) => setView(view)}
-        tileContent={tileContent}
-        tileClassName={tileClassName}
-      />
-      
-      <div className="event-list">
-        <h3>Events on {format(date, 'MMMM d, yyyy')}</h3>
-        {getEventsForDate(date).length > 0 ? (
+      <div className="calendar-container">
+        <Calendar
+          onChange={setDate}
+          value={date}
+          tileContent={({ date, view }) => 
+            view === 'month' && concerts.some(show => isSameDay(show.date, date)) ? (
+              <div className="concert-marker">!</div>
+            ) : null
+          }
+          tileClassName={({ date, view }) => 
+            view === 'month' && concerts.some(show => isSameDay(show.date, date)) 
+              ? 'has-concert' 
+              : ''
+          }
+        />
+      </div>
+
+      <div className="concerts-list">
+        <h2>Shows on {format(date, 'MMMM d, yyyy')}</h2>
+        {todaysConcerts.length > 0 ? (
           <ul>
-            {getEventsForDate(date).map(event => (
-              <li key={event.id}>
-                <strong>{event.name}</strong>
-                {event.venue && <span> at {event.venue}</span>}
+            {todaysConcerts.map(show => (
+              <li key={show.id}>
+                <strong>{show.name}</strong>
+                <span className="venue"> at {show.venue}</span>
               </li>
             ))}
           </ul>
         ) : (
-          <p>No events scheduled</p>
+          <p className="no-shows">No shows scheduled for this date</p>
         )}
       </div>
-      
-      <button 
-        className="today-button" 
-        onClick={() => setDate(new Date())}
-      >
-        Today
-      </button>
     </div>
   );
-};
-
-export default ConcertCalendar;
+}
