@@ -1,0 +1,55 @@
+@import url(https://fonts.bunny.net/css?family=alata:400|alatsi:400|aldrich:400|alexandria:800);
+
+:root {
+  --font-size-default: 16px;
+
+  --main-font: 'Alata', sans-serif;
+  --title-font: 'Alatsi', sans-serif;
+  --hero-text: 'Aldrich', sans-serif;
+  --event-title: 'Alexandria', sans-serif;
+
+  --white: #ffffff;
+
+  --primary-100: #ffeff1;
+  --primary-200: #fedfe3;
+  --primary-300: #febfc8; /* this */
+  --primary-400: #fd9eac;
+  --primary-500: #fc6c81; /* this-Main */
+  --primary-600: #d3456b;
+  --primary-700: #9a2f3f;
+  --primary-800: #642d35; /* this */
+  --primary-900: #23191b;
+
+  --secondary-500: #ff884a;
+  --secondary-800: #5d3a28;
+
+  --tertiary-500: #f0c014;
+
+  --accent-500: #01baf1;
+  --accent-700: #1f7698;
+  --accent-900: #00141b;
+
+  --black-100: #161616;
+  --black-200: #2c2c2c;
+  --black-300: #3e3e3e;
+  --black-400: #5d5d5d;
+  --black-500: #7d7d7d;
+
+  --gray-400: #bfbfbf;
+  --gray-500: #9a9a9a;
+}
+
+[data-theme='light'] {
+  --text-color: var(--accent-900);
+  --background: var(--white);
+  --background-primary: var(--primary-500);
+  --link-hover: var(--accent-700);
+}
+
+
+[data-theme='dark'] {
+  --text-color: var(--accent-900);
+  --background: var(--black-200);
+  --background-primary: var(--primary-500);
+  --link-hover: var(--accent-700);
+}

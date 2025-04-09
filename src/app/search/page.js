@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../page.module.css";
+import styles from "@/app/styles/page.module.css";
 import EventCard from "../components/eventCard";
 import Link from "next/link";
 import SearchField from "../components/searchField";

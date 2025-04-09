@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import styles from "./page.module.css";
+import styles from "@/app/styles/page.module.css";
 import EventCard from "./components/eventCard";
 
 export default function Home() {
