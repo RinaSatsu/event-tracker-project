@@ -17,6 +17,7 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  font-family: var(--main-font);
 }
 
 .page-wrapper {
@@ -37,7 +38,6 @@ button:active {
 body {
   color: var(--text-color);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

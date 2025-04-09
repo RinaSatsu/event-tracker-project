@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "@/app/styles/page.module.css";
-import EventCard from "../components/eventCard";
+import EventCard from "../components/eventCard/eventCard";
 import Link from "next/link";
 import SearchField from "../components/searchField";
 
