@@ -112,7 +112,7 @@
 
 .buttonLink {
   width: 130px;
-  border: 3px solid var(--button-color);
+  border: 3px solid var(--accent-button-color);
   border-radius: 19px;
   padding: 0.4rem;
   font-size: 1.1rem;
@@ -139,5 +139,5 @@
 
 .buttonLink:hover {
   cursor: pointer;
-  background-color: var(--button-color);
+  background-color: var(--accent-button-color);
 }

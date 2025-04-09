@@ -55,8 +55,7 @@ export default function Home() {
           </ul>
         </div>
         <ActionButton width={220}>View All</ActionButton>
-        <a href="#top">Top</a>
-        {/* <ToTopButton>Top</ToTopButton> */}
+        <ToTopButton />
       </main>
     </div>
   );

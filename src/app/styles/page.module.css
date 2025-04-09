@@ -1,7 +1,3 @@
-.page {  
-
-}
-
 .heroSection {
   position: relative;
   top: -85px;
@@ -61,4 +57,5 @@
   justify-items: center;
   flex-direction: column;
   gap: 32px;
+
 }

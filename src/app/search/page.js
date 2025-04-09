@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "@/app/styles/page.module.css";
 import EventCard from "../components/eventCard/eventCard";
-import Link from "next/link";
 import SearchField from "../components/searchField";
+import ToTopButton from "../components/toTopButton/toTopButton";
 
 export default function SearchPage() {
   const events = [{
@@ -57,7 +57,7 @@ export default function SearchPage() {
           </ul>
         </div>
         <button>View More</button>
-        <Link href="#top">Top</Link>
+        <ToTopButton />
       </main>
     </div>
   );

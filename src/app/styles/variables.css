@@ -51,7 +51,8 @@
   --month-color: var(--primary-500);
   --cont-text-color: var(--accent-900);
   --cont-subtext-color: var(--black-500);
-  --button-color: var(--accent-500);
+  --tertiary-button-color: var(--tertiary-500);
+  --accent-button-color: var(--accent-500);
   --button-text-color: var(--accent-900);
 
   --hero-background: url("/light-unsplash.webp");
@@ -73,7 +74,8 @@
   --month-color: var(--primary-500);
   --cont-text-color: var(--white);
   --cont-subtext-color: var(--grey-500);
-  --button-color: var(--accent-500);
+  --tertiary-button-color: var(--tertiary-500);
+  --accent-button-color: var(--accent-500);
   --button-text-color: var(--accent-500);
 
   --hero-background: url("/dark-unsplash.webp");

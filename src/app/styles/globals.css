@@ -1,7 +1,6 @@
 @import '@csstools/normalize.css';
 @import "@/app/styles/variables.css";                
 
-/* here */
 *,
 *::before,
 *::after {
@@ -22,6 +21,18 @@ body {
   scroll-padding-top: 80px;
 }
 
+body {
+  color: var(--text-color);
+  background: var(--background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .page-wrapper {
   min-height: 100vh;
   display: flex;
@@ -36,16 +47,3 @@ button:active,
 .button-link:active {
   transform: translate(0em, 0.2rem);
  }
-/*end-here*/
-
-body {
-  color: var(--text-color);
-  background: var(--background);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
