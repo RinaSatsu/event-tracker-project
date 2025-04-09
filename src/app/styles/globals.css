@@ -18,6 +18,8 @@ body {
   padding: 0;
   overflow-x: hidden;
   font-family: var(--main-font);
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
 .page-wrapper {
@@ -30,7 +32,8 @@ body {
   flex: 1;
 }
 
-button:active {
+button:active,
+.button-link:active {
   transform: translate(0em, 0.2rem);
  }
 /*end-here*/

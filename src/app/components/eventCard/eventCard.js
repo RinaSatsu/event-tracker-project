@@ -37,7 +37,7 @@ export default function EventCard({ event }) {
             </div>
           </div>
           <Link
-            className={styles.buttonLink}
+            className={`${styles.buttonLink} button-link`}
             href={`/event/${encodeURIComponent(event.link)}`}>
             See More
           </Link>

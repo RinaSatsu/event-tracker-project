@@ -1,4 +1,4 @@
-@import url(https://fonts.bunny.net/css?family=alata:400|alatsi:400|aldrich:400|alexandria:800);
+@import url(https://fonts.bunny.net/css?family=alata:400|alatsi:400|aldrich:400|alexandria:500);
 
 :root {
   --font-size-default: 16px;
@@ -44,14 +44,18 @@
   --background: var(--white);
   --background-primary: var(--primary-500);
   --link-hover: var(--accent-700);
+  --subhero-color: var(--black-300);
   --actbtn-color: var(--secondary-500);
   --actbtn-hover-color: var(--accent-500);
+  --card-bg-color: var(--white);
   --month-color: var(--primary-500);
   --cont-text-color: var(--accent-900);
   --cont-subtext-color: var(--black-500);
   --button-color: var(--accent-500);
   --button-text-color: var(--accent-900);
 
+  --hero-background: url("/light-unsplash.webp");
+  --hero-shadow: rgba(0, 0, 0, 0.25);
   --light-shadow: rgba(119, 115, 170, 0.1);
   --dark-shadow: rgba(119, 115, 170, 0.2);
 }
@@ -62,11 +66,15 @@
   --background: var(--black-200);
   --background-primary: var(--primary-500);
   --link-hover: var(--accent-700);
+  --subhero-color: var(--black-300);
   --actbtn-color: var(--secondary-500);
   --actbtn-hover-color: var(--accent-500);
+  --card-bg-color: var(--black-100);
   --month-color: var(--primary-500);
   --cont-text-color: var(--white);
   --cont-subtext-color: var(--grey-500);
   --button-color: var(--accent-500);
   --button-text-color: var(--accent-500);
+
+  --hero-background: url("/dark-unsplash.webp");
 }

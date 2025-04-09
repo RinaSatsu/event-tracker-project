@@ -1,10 +1,16 @@
+.card,
+.saveBtn,
+.saveBtn .icon
+{
+  transition: 0.2s ease-in-out;
+}
+
 .card {
   width: 344px;
   height: 386px;
-  background: white;
+  background: var(--card-bg-color);
   border-radius: 30px;
   box-shadow: 0px 19px 47px var(--light-shadow);
-  transition: 0.2s ease-in-out;
 }
 
 .image {
@@ -23,7 +29,6 @@
 .saveBtn {
   position: relative;
   border: none;
-  transition: 0.2s ease-in-out;
   border-radius: 50%;
   margin: 10px;
   width: 36px;
@@ -39,7 +44,6 @@
   top: 0;
   left: 0;
   fill: var(--background-primary);
-  transition: 0.2s ease-in-out;
   width: 30px;
   height: 30px;
 }
@@ -73,17 +77,17 @@
   gap: 0.2rem;
 }
 
-.dateContainer > .month {
+.dateContainer>.month {
   font-size: 0.875rem;
   color: var(--month-color);
 }
 
-.dateContainer > .day {
+.dateContainer>.day {
   font-size: 1.75rem;
   color: var(--cont-text-color);
 }
 
-.dateContainer > .time {
+.dateContainer>.time {
   font-size: 1rem;
   color: var(--cont-subtext-color);
   font-family: var(--main-font);
@@ -95,13 +99,13 @@
   justify-content: space-between;
 }
 
-.info > .title {
+.info>.title {
   font-size: 1.25rem;
   font-family: var(--event-title);
   color: var(--cont-text-color);
 }
 
-.info > .address {
+.info>.address {
   font-size: 1rem;
   color: var(--cont-subtext-color);
 }

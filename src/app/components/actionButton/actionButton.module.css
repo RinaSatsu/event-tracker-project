@@ -21,7 +21,7 @@
 
 .buttonInner,
 .buttonInnerHover,
-.buttonInnerStatic {
+.buttonInnerDefault {
   pointer-events: none;
   display: block;
 }
@@ -89,7 +89,7 @@
   background-color: var(--actbtn-hover-color);
 }
 
-.button:hover .buttonInnerStatic {
+.button:hover .buttonInnerDefault {
   opacity: 0;
   transform: translateY(-70%);
   transition:
