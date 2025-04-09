@@ -44,6 +44,8 @@
   --background: var(--white);
   --background-primary: var(--primary-500);
   --link-hover: var(--accent-700);
+  --actbtn-color: var(--secondary-500);
+  --actbtn-hover-color: var(--accent-500);
 }
 
 
@@ -52,4 +54,6 @@
   --background: var(--black-200);
   --background-primary: var(--primary-500);
   --link-hover: var(--accent-700);
+  --actbtn-color: var(--secondary-500);
+  --actbtn-hover-color: var(--accent-500);
 }

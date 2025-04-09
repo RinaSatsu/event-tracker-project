@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "@/app/styles/page.module.css";
 import EventCard from "./components/eventCard";
+import ActionButton from "./components/actionButton/actionButton";
 
 export default function Home() {
   const events = [{
@@ -34,7 +35,7 @@ export default function Home() {
           <div>
             <h1>Discover new and exciting events</h1>
             <p>Stay up to date with the latest events near you and never miss out on the fun. Find concerts, festivals, and more — all in one place!</p>
-            <button>Discover</button>
+            <ActionButton width={210}>Discover</ActionButton>
           </div>
         </section>
       <div>
@@ -46,7 +47,7 @@ export default function Home() {
           ))}
         </ul>
       </div>
-      <button>View More</button>
+      <ActionButton width={220}>View All</ActionButton>
       <Link href="#top">Top</Link>
       </main>
     </div>

@@ -28,7 +28,12 @@ body {
 .page-content {
   flex: 1;
 }
+
+button:active {
+  transform: translate(0em, 0.2rem);
+ }
 /*end-here*/
+
 body {
   color: var(--text-color);
   background: var(--background);
