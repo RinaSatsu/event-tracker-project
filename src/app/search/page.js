@@ -1,9 +1,13 @@
 import React from "react";
-import styles from "@/app/styles/page.module.css";
+import styles from "./page.module.css";
 import EventCard from "../components/eventCard/eventCard";
-import SearchField from "../components/searchField";
+import InputField from "../components/inputField/inputField";
 import ToTopButton from "../components/toTopButton/toTopButton";
 import CardContainer from "../components/cardContainer/cardContainer";
+import SearchIcon from "/public/search.svg";
+import MapIcon from "/public/map-marker.svg";
+import CalendarIcon from "/public/calendar-clock.svg";
+import ActionButton from "../components/actionButton/actionButton";
 
 export default function SearchPage() {
   const events = [{
@@ -31,24 +35,36 @@ export default function SearchPage() {
 
   return (
     <div className={styles.page}>
-      <div className={styles.main}>
-        <h1>SearchPage</h1>
-        <div style={{ display: "flex" }}>
-          <SearchField
-            icon="search.svg"
-            label="Search Event"
-          />
-          <SearchField
-            icon="map-marker.svg"
-            label="Place"
-          />
-          <SearchField
-            icon="calendar-clock.svg"
-            label="Time"
-          />
-          <button>Find</button>
+      <section className={styles.heroSection}>
+        <div className={styles.heroWrapper}>
+          <div className={styles.heroContainer}>
+            <h1>Find Events</h1>
+          </div>
         </div>
-      </div>
+        <div className={styles.searchContainer}>
+          <InputField
+            icon={SearchIcon}
+            label="Search Event"
+            type="text"
+          />
+          <InputField
+            icon={MapIcon}
+            label="Place"
+            type="text"
+          />
+          <InputField
+            icon={CalendarIcon}
+            label="Time"
+            type="text"
+          // type="date"
+          />
+          <ActionButton
+            className={styles.findBtn}>
+            Find
+          </ActionButton>
+          {/* <button className={styles.findBtn}>Find</button> */}
+        </div>
+      </section>
       <CardContainer>
         {events.map((event) => (
           <li key={event.id}>

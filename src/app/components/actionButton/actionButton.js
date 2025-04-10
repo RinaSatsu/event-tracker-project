@@ -2,11 +2,11 @@ import React from "react";
 import styles from "./actionButton.module.css"
 import "./actionButton.module.css";
 
-export default function ActionButton({ className, width, clickHandler, children }) {
+export default function ActionButton({ className, style, clickHandler, children }) {
   return (
     <button 
       className={`${className} ${styles.button} `}
-      style={{width: `${width}px`}}
+      style={style}
       onClick={clickHandler}>
       <span className={styles.buttonBg}>
         <span className={styles.buttonBgLayers}>

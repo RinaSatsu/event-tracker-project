@@ -21,6 +21,7 @@
   --primary-900: #23191b;
 
   --secondary-500: #ff884a;
+  --secondary-600: #cb642d;
   --secondary-800: #5d3a28;
 
   --tertiary-500: #f0c014;
@@ -43,6 +44,7 @@
   --text-color: var(--accent-900);
   --background: var(--white);
   --background-primary: var(--primary-500);
+  --background-secondary: var(--secondary-500);
   --link-hover: var(--accent-700);
   --subhero-color: var(--black-300);
   --actbtn-color: var(--secondary-500);
@@ -55,6 +57,8 @@
   --accent-button-color: var(--accent-500);
   --button-text-color: var(--accent-900);
   --main-divider-color: var(--gray-400);
+  --secondary-text-color: var(--secondary-800);
+  --secondary-subtext-color: var(--secondary-600);
 
   --hero-background: url("/light-unsplash.webp");
   --hero-shadow: rgba(0, 0, 0, 0.25);
@@ -67,6 +71,7 @@
   --text-color: var(--accent-900);
   --background: var(--black-200);
   --background-primary: var(--primary-500);
+  --background-secondary: var(--secondary-500);
   --link-hover: var(--accent-700);
   --subhero-color: var(--black-300);
   --actbtn-color: var(--secondary-500);
@@ -79,6 +84,9 @@
   --accent-button-color: var(--accent-500);
   --button-text-color: var(--accent-500);
   --main-divider-color: var(--black-400);
+  --secondary-text-color: var(--secondary-800);
+  --secondary-subtext-color: var(--secondary-600);
 
   --hero-background: url("/dark-unsplash.webp");
+  --hero-shadow: rgba(217, 217, 217, 0.1);
 }
