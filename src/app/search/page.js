@@ -3,6 +3,7 @@ import styles from "@/app/styles/page.module.css";
 import EventCard from "../components/eventCard/eventCard";
 import SearchField from "../components/searchField";
 import ToTopButton from "../components/toTopButton/toTopButton";
+import CardContainer from "../components/cardContainer/cardContainer";
 
 export default function SearchPage() {
   const events = [{
@@ -30,35 +31,32 @@ export default function SearchPage() {
 
   return (
     <div className={styles.page}>
-      <main className={styles.main}>
+      <div className={styles.main}>
         <h1>SearchPage</h1>
         <div style={{ display: "flex" }}>
-          <SearchField 
+          <SearchField
             icon="search.svg"
             label="Search Event"
           />
-          <SearchField 
+          <SearchField
             icon="map-marker.svg"
             label="Place"
           />
-          <SearchField 
+          <SearchField
             icon="calendar-clock.svg"
             label="Time"
           />
           <button>Find</button>
         </div>
-        <div>
-          <ul>
-            {events.map((event) => (
-              <li key={event.id}>
-                <EventCard event={event} />
-              </li>
-            ))}
-          </ul>
-        </div>
-        <button>View More</button>
-        <ToTopButton />
-      </main>
+      </div>
+      <CardContainer>
+        {events.map((event) => (
+          <li key={event.id}>
+            <EventCard event={event} />
+          </li>
+        ))}
+      </CardContainer>
+      <ToTopButton />
     </div>
   );
 }

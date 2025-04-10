@@ -6,7 +6,7 @@
 }
 
 .card {
-  width: 344px;
+  min-width: 344px;
   height: 386px;
   background: var(--card-bg-color);
   border-radius: 30px;

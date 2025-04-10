@@ -54,6 +54,7 @@
   --tertiary-button-color: var(--tertiary-500);
   --accent-button-color: var(--accent-500);
   --button-text-color: var(--accent-900);
+  --main-divider-color: var(--gray-400);
 
   --hero-background: url("/light-unsplash.webp");
   --hero-shadow: rgba(0, 0, 0, 0.25);
@@ -77,6 +78,7 @@
   --tertiary-button-color: var(--tertiary-500);
   --accent-button-color: var(--accent-500);
   --button-text-color: var(--accent-500);
+  --main-divider-color: var(--black-400);
 
   --hero-background: url("/dark-unsplash.webp");
 }

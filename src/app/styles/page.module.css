@@ -50,12 +50,3 @@
   left: calc(50vw - 115px);
   width: 210px;
 }
-
-.main {
-  display: flex;
-  align-items: center;
-  justify-items: center;
-  flex-direction: column;
-  gap: 32px;
-
-}

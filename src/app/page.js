@@ -1,9 +1,8 @@
-import Link from "next/link";
 import styles from "@/app/styles/page.module.css";
 import EventCard from "./components/eventCard/eventCard";
 import ActionLink from "./components/actionButton/actionLink";
-import ActionButton from "./components/actionButton/actionButton";
 import ToTopButton from "./components/toTopButton/toTopButton";
+import CardContainer from "./components/cardContainer/cardContainer";
 
 export default function Home() {
   const events = [{
@@ -44,19 +43,14 @@ export default function Home() {
           Discover
         </ActionLink>
       </section>
-      <main className={styles.main} id="main">
-        <div>
-          <ul>
-            {events.map((event) => (
-              <li key={event.id}>
-                <EventCard event={event} />
-              </li>
-            ))}
-          </ul>
-        </div>
-        <ActionButton width={220}>View All</ActionButton>
-        <ToTopButton />
-      </main>
+      <CardContainer>
+        {events.map((event) => (
+          <li key={event.id}>
+            <EventCard event={event} />
+          </li>
+        ))}
+      </CardContainer>
+      <ToTopButton />
     </div>
   );
 }
