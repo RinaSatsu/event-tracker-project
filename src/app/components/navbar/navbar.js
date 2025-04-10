@@ -2,10 +2,7 @@
 import Link from 'next/link';
 import Image from "next/image";
 import styles from "./navbar.module.css";
-
-const changeTheme = () => {
-  setTheme(theme === 'dark' ? 'light' : 'dark');
-}
+import ThemeToggle from '@/app/components/themeToggle/themeToggle';
 
 export default function Navbar() {
   return (
@@ -49,15 +46,7 @@ export default function Navbar() {
             </button>
           </li>
           <li>
-            <button onClick={changeTheme}>
-              <Image
-                className={styles.icon}
-                src="/night-day.svg"
-                alt=""
-                width={28}
-                height={28}
-              />
-            </button>
+            <ThemeToggle />
           </li>
         </ul>
       </div>
