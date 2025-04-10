@@ -119,6 +119,7 @@
   text-align: center;
   align-self: flex-end;
   transition: 0.2s ease-in-out;
+  color: var(--button-text-color);
 }
 
 .card:hover {
@@ -140,4 +141,5 @@
 .buttonLink:hover {
   cursor: pointer;
   background-color: var(--accent-button-color);
+  color: var(--text-color);
 }
