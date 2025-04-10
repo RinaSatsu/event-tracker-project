@@ -1,11 +1,11 @@
 import React from "react";
 import HeroSection from "@/app/components/heroSection/heroSection";
 
-export default function CalendarPage() {
+export default function FavEventsPage() {
   return (
     <div>
       <HeroSection
-        title="Plan with Calendar">
+        title="List Favorite Events">
       </HeroSection>
     </div>
   );

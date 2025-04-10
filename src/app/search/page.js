@@ -8,6 +8,7 @@ import SearchIcon from "/public/search.svg";
 import MapIcon from "/public/map-marker.svg";
 import CalendarIcon from "/public/calendar-clock.svg";
 import ActionButton from "../components/actionButton/actionButton";
+import HeroSection from "../components/heroSection/heroSection";
 
 export default function SearchPage() {
   const events = [{
@@ -35,12 +36,8 @@ export default function SearchPage() {
 
   return (
     <div className={styles.page}>
-      <section className={styles.heroSection}>
-        <div className={styles.heroWrapper}>
-          <div className={styles.heroContainer}>
-            <h1>Find Events</h1>
-          </div>
-        </div>
+      <HeroSection
+        title="Find Events">
         <div className={styles.searchContainer}>
           <InputField
             icon={SearchIcon}
@@ -63,7 +60,7 @@ export default function SearchPage() {
             Find
           </ActionButton>
         </div>
-      </section>
+      </HeroSection>
       <CardContainer>
         {events.map((event) => (
           <li key={event.id}>

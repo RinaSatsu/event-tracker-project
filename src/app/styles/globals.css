@@ -43,6 +43,24 @@ a {
   flex: 1;
 }
 
+button,
+.button-link {
+  border: 3px solid var(--accent-500);
+  color: var(--cont-text-color);
+  border-radius: 20px;
+  padding: 0.4rem;
+  font-size: 1.1rem;
+  text-align: center;
+  background-color: transparent;
+  transition: 0.2s ease-in-out;
+}
+
+button:hover,
+.button-link:hover {
+  cursor: pointer;
+  background-color: var(--accent-500);
+}
+
 button:active,
 .button-link:active {
   transform: translate(0em, 0.2rem);

@@ -1,7 +1,7 @@
 .heroSection {
   position: relative;
   top: -85px;
-  height: 850px;
+  height: 410px;
 }
 
 .heroWrapper{
@@ -13,7 +13,7 @@
   height: 100%;
   background-image: var(--hero-background);
   background-size: cover;
-  background-position: top;
+  background-position: center;
   clip-path: polygon(
     0 0,
     100% 0,
@@ -30,23 +30,9 @@
 
 .heroContainer h1 {
   font-family: var(--hero-text);
-  font-size: 4rem;
+  font-size: 3rem;
   text-transform: uppercase;
   max-width: 740px;
   text-align: center;
   font-weight: 500;
-}
-
-.heroContainer p {
-  font-size: 1.2rem;
-  max-width: 580px;
-  text-align: center;
-  color: var(--subhero-color);
-}
-
-.downBtn {
-  position: relative;
-  top: -26px;
-  left: calc(50vw - 115px);
-  width: 210px;
 }
