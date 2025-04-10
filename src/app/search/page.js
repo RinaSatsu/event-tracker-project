@@ -59,10 +59,9 @@ export default function SearchPage() {
           // type="date"
           />
           <ActionButton
-            className={styles.findBtn}>
+            style={{ border: "3px solid var(--secondary-text-color)" }}>
             Find
           </ActionButton>
-          {/* <button className={styles.findBtn}>Find</button> */}
         </div>
       </section>
       <CardContainer>
