@@ -1,8 +1,8 @@
 'use client'
-import Link from 'next/link';
-import Image from "next/image";
-import styles from "./navbar.module.css";
 import ThemeToggle from '@/app/components/themeToggle/themeToggle';
+import Link from 'next/link';
+import styles from "./navbar.module.css";
+import UserIcon from "/public/circle-user.svg";
 
 export default function Navbar() {
   return (
@@ -35,15 +35,11 @@ export default function Navbar() {
         </nav>
         <ul>
           <li>
-            <button>
-              <Image
-                className={styles.icon}
-                src="/circle-user.svg"
-                alt=""
-                width={28}
-                height={28}
-              />
-            </button>
+            <Link
+              className={styles.linkButton}
+              href="/login">
+              <UserIcon />
+            </Link>
           </li>
           <li>
             <ThemeToggle />

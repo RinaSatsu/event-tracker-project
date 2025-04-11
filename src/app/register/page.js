@@ -8,11 +8,6 @@ import Link from "next/link";
 function validateForm(values) {
   const { username, email, password, confirmPassword } = values;
   const errors = {};
-  console.log(values);
-  console.log(username);
-  console.log("Form values:", email);
-  console.log("Form values:", password);
-  console.log("Form values:", confirmPassword);
 
   if (!username.trim()) {
     errors.username = "Username is required.";
@@ -128,7 +123,7 @@ export default function RegisterPage() {
         <form
           className={styles.form}
           onSubmit={handleUserSubmit}>
-          <h1 className={styles.title}>Register </h1>
+          <h1 className={styles.title}>Register</h1>
           <p className={styles.subtitle}>Signup now and get full access to our app.</p>
           <div>
             <InputField
@@ -194,7 +189,7 @@ export default function RegisterPage() {
           </div>
           <p className={styles.message}>{message}</p>
           <button className={styles.submit}>Submit</button>
-          <p className={styles.signin}>Already have an acount ? <Link href="">Sign in</Link> </p>
+          <p className={styles.signin}>Already have an acount? <Link href="/login">Sign in</Link></p>
         </form>
       </main>
     </div>

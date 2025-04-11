@@ -1,30 +1,106 @@
+'use client'
+import Link from "next/link";
+import { useState } from "react";
+import HeroSection from "@/app/components/heroSection/heroSection";
+import InputField from "@/app/components/inputField/inputField";
+import styles from "./page.module.css";
+
 export default function LoginPage() {
+  const [values, setValues] = useState({
+    email: "",
+    password: ""
+  });
+
+  const [errors, setErrors] = useState({});
+  const [message, setMessage] = useState("");
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setValues((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleUserLogin = async (e) => {
+    e.preventDefault();
+    setMessage("");
+    const errs = {};
+
+    if (!values.email.trim()) errs.email = "Email is required.";
+    if (!values.password) errs.password = "Password is required.";
+
+    setErrors(errs);
+
+    // try {
+    //   const res = await fetch("/api/register", {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify({ username, email, password }),
+    //   });
+
+    //   const data = await res.json();
+    //   if (res.ok) {
+    //     setMessage("Registration sucessfull!");
+    //     setUsername("");
+    //     setEmail("");
+    //     setPassword("");
+    //   } else {
+    //     setMessage(data.error || "Failed to add user");
+    //     throw new Error(data.message);
+    //   }
+    // } catch (error) {
+    //   setMessage("Error adding user");
+    // }
+    if (Object.keys(errs).length === 0) {
+      setMessage("Signing in...", values);
+    } else {
+      setMessage("");
+    }
+  }
+
+
   return (
-    <div>
-      <form class="form">
-        <h1 class="title">Register </h1>
-        <p class="message">Signup now and get full access to our app.</p>
-        <label htmlFor="username">
-          <input id="username" required placeholder="" type="text" className="input" />
-          <span>Username</span>
-        </label>
-
-        <label htmlFor="email">
-          <input id="username" required placeholder="" type="email" className="input" />
-          <span>Email</span>
-        </label>
-
-        <label htmlFor="password">
-          <input id="password" required placeholder="" type="password" className="input" />
-          <span>Password</span>
-        </label>
-        <label htmlFor="passwordConf">
-          <input id="passwordConf" required placeholder="" type="password" className="input" />
-          <span>Confirm password</span>
-        </label>
-        <button class="submit">Submit</button>
-        <p class="signin">Already have an acount ? <a href="#">Signin</a> </p>
-      </form>
+    <div className={styles.page}>
+      <HeroSection className={styles.small}></HeroSection>
+      <main className={styles.main}>
+        <form
+          className={styles.form}
+          onSubmit={handleUserLogin}
+          noValidate>
+          <h1 className={styles.title}>Sign In</h1>
+          <div>
+            <InputField
+              className={styles.input}
+              label="Email"
+              name="email"
+              placeholder=""
+              type="email"
+              autoComplete="email"
+              value={values.email}
+              onChange={handleChange}
+            />
+            {errors.email && (
+              <div className={styles.error}>{errors.email}</div>
+            )}
+          </div>
+          <div>
+            <InputField
+              className={styles.input}
+              label="Password"
+              name="password"
+              placeholder=""
+              type="password"
+              autoComplete="new-password"
+              value={values.password}
+              onChange={handleChange}
+            />
+            {errors.password && (
+              <div className={styles.error}>{errors.password}</div>
+            )}
+          </div>
+          <p className={styles.message}>{message}</p>
+          <button className={styles.submit}>Submit</button>
+          <p className={styles.signin}>Don't have an acount? <Link href="/register">Sign up</Link></p>
+        </form>
+      </main>
     </div>
   );
 }
