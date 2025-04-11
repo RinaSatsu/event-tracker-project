@@ -82,34 +82,32 @@ export default function RegisterPage() {
       confirmPassword: true
     });
 
-    // try {
-    //   const res = await fetch("/api/register", {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify({ username, email, password }),
-    //   });
-
-    //   const data = await res.json();
-    //   if (res.ok) {
-    //     setMessage("Registration sucessfull!");
-    //     setUsername("");
-    //     setEmail("");
-    //     setPassword("");
-    //   } else {
-    //     setMessage(data.error || "Failed to add user");
-    //     throw new Error(data.message);
-    //   }
-    // } catch (error) {
-    //   setMessage("Error adding user");
-    // }
     if (Object.keys(validationErrors).length === 0) {
-      setMessage("Registration successful!");
-      setValues({
-        username: "",
-        email: "",
-        password: "",
-        confirmPassword: ""
-      });
+      const { username, email, password } = values;
+      console.log(JSON.stringify({ username, email, password }));
+      try {
+        const res = await fetch("/api/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, email, password }),
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          setMessage("Registration sucessfull!");
+          setValues({
+            username: "",
+            email: "",
+            password: "",
+            confirmPassword: ""
+          });
+        } else {
+          setMessage(data.error || "Failed to add user");
+          throw new Error(data.message);
+        }
+      } catch (error) {
+        console.log("Error adding user: ", error);
+      }
     } else {
       setMessage("");
     }
