@@ -26,46 +26,46 @@ export default function ConcertCalendarPage() {
   const todaysConcerts = concerts.filter(show => isSameDay(show.date, date));
 
   return (
-      <div>
+    <div>
       <HeroSection
         title="Plan with Calendar">
       </HeroSection>
-      <div className="calendar-page">
-        <h1>2025 Toronto Rock Concerts</h1>
-
-        <div className="calendar-container">
-          <Calendar
-            onChange={setDate}
-            value={date}
-            tileContent={({ date, view }) => 
-              view === 'month' && concerts.some(show => isSameDay(show.date, date)) ? (
-                <div className="concert-marker">!</div>
-              ) : null
-            }
-            tileClassName={({ date, view }) => 
-              view === 'month' && concerts.some(show => isSameDay(show.date, date)) 
-                ? 'has-concert' 
-                : ''
-            }
-          />
+      <main>
+        <div className="calendar-page">
+          <h1>2025 Toronto Rock Concerts</h1>
+          <div className="calendar-container">
+            <Calendar
+              onChange={setDate}
+              value={date}
+              tileContent={({ date, view }) =>
+                view === 'month' && concerts.some(show => isSameDay(show.date, date)) ? (
+                  <div className="concert-marker">!</div>
+                ) : null
+              }
+              tileClassName={({ date, view }) =>
+                view === 'month' && concerts.some(show => isSameDay(show.date, date))
+                  ? 'has-concert'
+                  : ''
+              }
+            />
+          </div>
+          <div className="concerts-list">
+            <h2>Shows on {format(date, 'MMMM d, yyyy')}</h2>
+            {todaysConcerts.length > 0 ? (
+              <ul>
+                {todaysConcerts.map(show => (
+                  <li key={show.id}>
+                    <strong>{show.name}</strong>
+                    <span className="venue"> at {show.venue}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="no-shows">No shows scheduled for this date</p>
+            )}
+          </div>
         </div>
-
-        <div className="concerts-list">
-          <h2>Shows on {format(date, 'MMMM d, yyyy')}</h2>
-          {todaysConcerts.length > 0 ? (
-            <ul>
-              {todaysConcerts.map(show => (
-                <li key={show.id}>
-                  <strong>{show.name}</strong>
-                  <span className="venue"> at {show.venue}</span>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p className="no-shows">No shows scheduled for this date</p>
-          )}
-        </div>
-     </div>
+      </main>
     </div>
   );
 }

@@ -28,27 +28,7 @@ export default function LoginPage() {
     if (!values.password) errs.password = "Password is required.";
 
     setErrors(errs);
-
-    // try {
-    //   const res = await fetch("/api/register", {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify({ username, email, password }),
-    //   });
-
-    //   const data = await res.json();
-    //   if (res.ok) {
-    //     setMessage("Registration sucessfull!");
-    //     setUsername("");
-    //     setEmail("");
-    //     setPassword("");
-    //   } else {
-    //     setMessage(data.error || "Failed to add user");
-    //     throw new Error(data.message);
-    //   }
-    // } catch (error) {
-    //   setMessage("Error adding user");
-    // }
+    
     if (Object.keys(errs).length === 0) {
       setMessage("Signing in...", values);
     } else {
