@@ -33,11 +33,17 @@
   --text-color: var(--form-bright);
 }
 
-
-.message, .signin {
+.subtitle,  
+.signin {
   color: var(--form-dull);
   font-size: 0.875rem;
   text-align: center;
+}
+
+.message {
+  color: var(--form-text-color);
+  font-size: 1rem;
+  height: 2rem;
 }
 
 .signin a {
