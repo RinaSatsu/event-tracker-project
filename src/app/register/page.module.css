@@ -43,15 +43,19 @@
 .message {
   color: var(--form-text-color);
   font-size: 1rem;
-  height: 2rem;
+  height: 1.75rem;
+}
+
+.signin {
+  margin-top: 0.5rem;
 }
 
 .signin a {
-  color: royalblue;
+  color: var(--background-primary);
 }
 
 .signin a:hover {
-  text-decoration: underline royalblue;
+  text-decoration: underline var(--background-primary);
 }
 
 .submit {
@@ -62,4 +66,5 @@
 
 .error {
   color: var(--error-color);
+  font-size: 0.9rem;
 }
