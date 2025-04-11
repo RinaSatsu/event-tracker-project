@@ -1,4 +1,4 @@
-export default function SigninPage() {
+export default function LoginPage() {
   return (
     <div>
       <form class="form">

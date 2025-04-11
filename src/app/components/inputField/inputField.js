@@ -8,16 +8,15 @@ function toCamelCaseId(text) {
     .replace(/[^a-z0-9]+(.)/g, (_, char) => char.toUpperCase());
 }
 
-export default function InputField({ icon: Icon, label, addon, ...props }) {
+export default function InputField({ icon: Icon, className, label, ...props }) {
   const id = toCamelCaseId(label);
 
   return (
-    <div className={styles.fieldContainer}>
+    <div className={`${className} ${styles.fieldContainer}`}>
       {Icon}
       <div className={styles.inputContainer}>
         <input id={id} {...props} />
         <label htmlFor={id} className={styles.label}>{label}</label>
-        {addon && <div>{addon}</div>}
         <div className={styles.underline}></div>
       </div>
     </div>

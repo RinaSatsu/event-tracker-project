@@ -15,7 +15,7 @@
   --primary-300: #febfc8; /* this */
   --primary-400: #fd9eac;
   --primary-500: #fc6c81; /* this-Main */
-  --primary-600: #d3456b;
+  --primary-600: #d3456b;/* this */
   --primary-700: #9a2f3f;
   --primary-800: #642d35; /* this */
   --primary-900: #23191b;
@@ -59,6 +59,11 @@
   --main-divider-color: var(--gray-400);
   --secondary-text-color: var(--secondary-800);
   --secondary-subtext-color: var(--secondary-600);
+  --form-text-color: var(--primary-800);
+  --form-subtext-color: var(--primary-600);
+  --form-bright: var(--accent-900);
+  --form-dull: var(--black-500);
+  --error-color: #ed0000;
 
   --hero-background: url("/light-unsplash.webp");
   --hero-shadow: rgba(0, 0, 0, 0.25);
@@ -86,6 +91,11 @@
   --main-divider-color: var(--black-400);
   --secondary-text-color: var(--secondary-800);
   --secondary-subtext-color: var(--secondary-600);
+  --form-text-color: var(--gray-400);
+  --form-subtext-color: var(--black-300);
+  --form-bright: var(--white);
+  --form-dull: var(--black-500);
+  --error-color: #c94040;
 
   --hero-background: url("/dark-unsplash.webp");
   --hero-shadow: rgba(217, 217, 217, 0.1);
