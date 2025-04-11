@@ -9,6 +9,7 @@ import MapIcon from "/public/map-marker.svg";
 import CalendarIcon from "/public/calendar-clock.svg";
 import ActionButton from "../components/actionButton/actionButton";
 import HeroSection from "../components/heroSection/heroSection";
+import DateInput from "../components/dateInput/dateInput";
 
 export default function SearchPage() {
   const events = [{
@@ -40,20 +41,20 @@ export default function SearchPage() {
         title="Find Events">
         <div className={styles.searchContainer}>
           <InputField
-            icon={SearchIcon}
+            icon={<SearchIcon />}
             label="Search Event"
             type="text"
+            placeholder=""
           />
           <InputField
-            icon={MapIcon}
+            icon={<MapIcon />}
             label="Place"
             type="text"
+            placeholder=""
           />
-          <InputField
-            icon={CalendarIcon}
+          <DateInput
+            icon={<CalendarIcon />}
             label="Time"
-            type="text"
-          // type="date"
           />
           <ActionButton
             style={{ border: "3px solid var(--secondary-text-color)" }}>
