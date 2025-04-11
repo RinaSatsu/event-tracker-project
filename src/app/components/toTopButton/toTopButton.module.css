@@ -1,0 +1,53 @@
+.btnLink {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--accent-button-color);
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 0px 4px rgba(1, 186, 241, 0.253);
+  cursor: pointer;
+  transition-duration: 0.3s;
+  overflow: hidden;
+}
+
+.icon {
+  width: 12px;
+  transition-duration: 0.3s;
+  fill: var(--text-color);
+}
+
+.btnLink:hover {
+  width: 140px;
+  border-radius: 50px;
+  transition-duration: 0.3s;
+  background-color: var(--tertiary-button-color);
+  box-shadow: 0px 0px 0px 4px rgba(255, 136, 74, 0.253);
+  align-items: center;
+}
+
+.btnLink:hover .icon {
+  transition-duration: 0.3s;
+  transform: translateY(-200%);
+}
+
+.btnLink::before {
+  position: absolute;
+  bottom: -20px;
+  content: "Back to Top";
+  color: var(--text-color);
+  font-size: 0px;
+}
+
+.btnLink:hover::before {
+  font-size: 13px;
+  opacity: 1;
+  bottom: unset;
+  transition-duration: 0.3s;
+}

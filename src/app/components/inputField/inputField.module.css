@@ -1,0 +1,65 @@
+.fieldContainer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.fieldContainer svg {
+  width: 32px;
+  height: 32px;
+  fill: var(--secondary-text-color);
+}
+
+.inputContainer {
+  position: relative;
+  margin-top: 1.2rem;
+  margin-bottom: 0.6rem;
+  width: 100%;
+}
+
+.inputContainer input {
+  font-family: var(--title-font);
+  font-size: 1.375rem;
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid var(--secondary-subtext-color);
+  padding: 2px 0;
+  background-color: transparent;
+  outline: none;
+  color: var(--text-color);
+}
+
+.inputContainer .label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--secondary-text-color);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  font-family: var(--main-font);
+  font-size: 1.375rem;
+}
+
+.inputContainer input:focus ~ .label,
+.inputContainer input:not(:placeholder-shown) ~ .label {
+  top: -1.25rem;
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.inputContainer .underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background-color: var(--text-color);
+  transform: scaleX(0);
+  transition: all 0.3s ease;
+}
+
+.inputContainer input:focus ~ .underline,
+.inputContainer input:not(:placeholder-shown) ~ .underline {
+  transform: scaleX(1);
+}

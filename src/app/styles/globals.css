@@ -1,0 +1,67 @@
+@import '@csstools/normalize.css';
+@import "@/app/styles/variables.css";                
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: var(--main-font);
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  color: var(--text-color);
+  background: var(--background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  flex: 1;
+}
+
+button,
+.button-link {
+  border: 3px solid var(--accent-500);
+  color: var(--cont-text-color);
+  border-radius: 20px;
+  padding: 0.4rem;
+  font-size: 1.1rem;
+  text-align: center;
+  background-color: transparent;
+  transition: 0.2s ease-in-out;
+}
+
+button:hover,
+.button-link:hover {
+  cursor: pointer;
+  background-color: var(--accent-500);
+}
+
+button:active,
+.button-link:active {
+  transform: translate(0em, 0.2rem);
+ }

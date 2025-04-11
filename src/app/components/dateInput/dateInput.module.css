@@ -1,0 +1,111 @@
+.fieldContainer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.fieldContainer svg {
+  width: 32px;
+  height: 32px;
+  fill: var(--secondary-text-color);
+}
+
+.inputContainer {
+  position: relative;
+  margin-top: 1.2rem;
+  margin-bottom: 0.6rem;
+  max-width: 235px;
+  flex-grow: 1;
+  min-width: 0; 
+  width: 100%;
+  height: 2.2rem;
+}
+
+svg.iconOverlay {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: var(--secondary-text-color);
+}
+
+.inputContainer input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50vw;
+  max-width: 100%;
+  height: 100%;
+  background-color: transparent;
+  color: var(--text-color);
+  border: none;
+  outline: none;
+  font-family: var(--title-font);
+  font-size: 1.375rem;
+  box-sizing: border-box;
+  padding: 2px 0;
+  border-bottom: 2px solid var(--secondary-subtext-color);
+}
+
+.inputContainer input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.inputContainer input[type="date"]::-webkit-clear-button,
+.inputContainer input[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+
+.inputContainer .label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--secondary-text-color);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  font-family: var(--main-font);
+  font-size: 1.375rem;
+}
+
+.inputContainer input:focus ~ .label,
+.inputContainer input[data-filled="true"] ~ .label {
+  top: -1.25rem;
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.inputContainer .underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background-color: var(--text-color);
+  transform: scaleX(0);
+  transition: all 0.3s ease;
+}
+
+.inputContainer input:focus ~ .underline,
+.inputContainer input[data-filled="true"] ~ .underline {
+  transform: scaleX(1);
+}
+
+.inputContainer input::-webkit-datetime-edit {
+  transition: all 0.3s ease;
+  color: transparent;
+}
+
+.inputContainer input:focus::-webkit-datetime-edit,
+.inputContainer input[data-filled="true"]::-webkit-datetime-edit {
+  color: var(--text-color);
+}

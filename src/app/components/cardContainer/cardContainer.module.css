@@ -1,0 +1,29 @@
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 32px;
+  margin: 0.2rem 100px 5rem 100px;
+  border-bottom: 1px solid var(--main-divider-color);
+}
+
+.cardContainer {
+  width: 100%;
+  max-width: 1090px;
+}
+
+.cardContainer ul {
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(344px, 1fr));
+  grid-auto-rows: minmax(386px, max-content);
+  gap: 1.75rem;
+  width: 100%;
+}
+
+.moreBtn {
+  position: relative;
+  top: 26px;
+  width: 220px;
+}

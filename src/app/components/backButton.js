@@ -1,6 +1,6 @@
 'use client'
 import { useRouter } from "next/navigation";
-import styles from "../page.module.css";
+import styles from "@/app/styles/page.module.css";
 
 export default function BackButton() {
   const router = useRouter();

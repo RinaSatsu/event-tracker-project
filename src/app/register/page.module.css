@@ -1,0 +1,70 @@
+.small {
+  height: 200px !important;
+}
+
+.main {
+  position: relative;
+  top: -2.5rem;
+}
+
+.form {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 380px;
+  padding: 1.25rem 1.8rem;
+  background: var(--card-bg-color);
+  border-radius: 30px;
+  box-shadow: 0px 19px 47px var(--light-shadow);
+  position: relative;
+}
+
+.title {
+  font-size: 2.2rem;
+  font-family: var(--title-font);
+  color: var(--background-primary);
+  text-align: center;
+}
+
+.input {
+  --secondary-text-color: var(--form-text-color);
+  --secondary-subtext-color: var(--form-subtext-color);
+  --text-color: var(--form-bright);
+}
+
+.subtitle,  
+.signin {
+  color: var(--form-dull);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.message {
+  color: var(--form-text-color);
+  font-size: 1rem;
+  height: 1.75rem;
+}
+
+.signin {
+  margin-top: 0.5rem;
+}
+
+.signin a {
+  color: var(--background-primary);
+}
+
+.signin a:hover {
+  text-decoration: underline var(--background-primary);
+}
+
+.submit {
+  margin: 0 auto;
+  width: 150px;
+  padding: 0.5rem 1.4rem;
+}
+
+.error {
+  color: var(--error-color);
+  font-size: 0.9rem;
+}
