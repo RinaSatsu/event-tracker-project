@@ -1,111 +1,70 @@
 'use client'
-import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
-import BackButton from "@/app/components/backButton";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'next/navigation';
 
-export default function EventPage({ params }) {
-  const eventName = params.eventName;
-  const [eventData, setEventData] = useState(null);
-  const [statusMessage, setStatusMessage] = useState("Loading event...")
+const EventPage = () => {
+  const [events, setEvents] = useState([]);
+  const [statusMessage, setStatusMessage] = useState('Loading events...');
+
+  const params = useParams();
+  const keyword = params.eventName;
 
   useEffect(() => {
-    if (!eventName) {
-      setStatusMessage("No event name provided.")
-      return;
-    }
-    async function fetchEventByName() {
+    const fetchEvents = async () => {
       try {
-       const API_KEY = "GTFQBVOZQRC57FFB4ZTZ"; //Hardcoded API Key(not ideal but fine for now)
+        const apiKey = 'BW7AXlRXKWgiAYSkY71zNBIAgFqUMuCn'; 
+        const response = await fetch(
+          `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${encodeURIComponent(keyword)}&countryCode=CA&locale=en-CA&apikey=${apiKey}`
+        );
 
-       const searchURL = `https://www.eventbriteapi.com/v3/events/search?token=${API_KEY}`;
-       const searchResponse = await axios.get(searchURL, {
-        params: {
-          q: eventName,
-          expand: "venue, organizer, ticket_availability"
-        },
-       });
-      if(!searchResponse.data.events || searchResponse.data.events.length === 0) {
-        setStatusMessage("No matching events found.");
-        return
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (data._embedded && data._embedded.events.length > 0) {
+          setEvents(data._embedded.events);
+          setStatusMessage('');
+        } else {
+          setStatusMessage('No events found.');
+        }
+      } catch (error) {
+        console.error('Error fetching events:', error);
+        setStatusMessage('An error occurred while fetching events.');
       }
+    };
 
-      const matchedEvent = searchResponse.data.events[0];
-      
-      const eventURL = `https://www.eventbriteapi.com/v3/events${matchedEvent.id}/?token=${API_KEY}`;
-      const eventResponse = await axios.get(eventURL, {
-        params: {
-          expand: "venue,organizer,ticket_availablity",
-        },
-      });
-      
-      setEventData(eventResponse.data);
-      setStatusMessage("");
-    } catch (err) {
-      console.error("fetch error:", err);
-      setStatusMessage("An error occured: " + err.message);
-    }
-  }
+    fetchEvents();
+  }, [keyword]);
 
-fetchEventByName();
-}, [eventName]);
-
-let content;
-
-if (statusMessage) {
-  content = <div>{statusMessage}</div>;
-} else if (eventData){
-const {
-  name,
-  start,
-  end,
-  logo,
-  venue,
-  description,
-  organizer,
-  ticket_availability,
-} = eventData;
-
-  content = (
+  return (
     <div>
-      <h1>{name?.text}</h1>
-      {logo?.url && (
-        <div>
-          <img src={logo.url} alt="Event banner" style={{maxWidth: "100%", borderRadius:"8px"}}/>
-        </div>
-      )}
-      {start && end && (
-        <div>
-          <strong>Date:</strong>{new Date(start.local).toLocaleString()} - {new Date(end.local).toLocaleString()}
-        </div>
-      )}
-      {venue && (
-        <div>
-          <strong>Location:</strong> {venue.name}, {venue.address.localized_address_display}
-        </div>
-      )}
-      <div>
-        <strong>Description:</strong>
-        <div dangerouslySetInnerHTML={{__html: description.html}}/>
-      </div>
-      {organizer && (
-        <div>
-          <strong>Organizer:</strong> {organizer.name}
-        </div>
-      )}
-        {ticket_availability && (
-          <div>
-            <strong>Tickets</strong> {ticket_availability.is_sold_out ? "Sold Out" : "Available"}
-          </div>
-      )}
+      <h2>Upcoming Events</h2>
+      {statusMessage && <p>{statusMessage}</p>}
+      <ul>
+        {events.map((event) => {
+          const imageUrl =
+            event.images && event.images.length > 0 ? event.images[0].url : null;
+          return (
+            <li key={event.id}>
+              <h3>{event.name}</h3>
+              {imageUrl && (
+                <img
+                  src={imageUrl}
+                  alt={`Banner for ${event.name}`}
+                  style={{ maxWidth: '200px', height: 'auto' }}
+                />
+              )}
+              <p>{new Date(event.dates.start.dateTime).toLocaleString()}</p>
+              <p>{event._embedded?.venues?.[0]?.name}</p>
+              <p>{event._embedded?.attractions?.[0]?.name}</p>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
-}
+};
 
-return (
-  <div>
-    {content}
-    <BackButton/>
-  </div>
-);
-}
+export default EventPage;
