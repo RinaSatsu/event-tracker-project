@@ -4,6 +4,7 @@ import HeroSection from "../components/heroSection/heroSection";
 import InputField from "../components/inputField/inputField";
 import styles from "./page.module.css";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 function validateForm(values) {
   const { username, email, password, confirmPassword } = values;
@@ -54,6 +55,8 @@ export default function RegisterPage() {
   const [touched, setTouched] = useState({});
   const [message, setMessage] = useState("");
 
+  const router = useRouter();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues((prev) => ({ ...prev, [name]: value }));
@@ -100,6 +103,9 @@ export default function RegisterPage() {
             password: "",
             confirmPassword: ""
           });
+          setTimeout(() => {
+            router.push("/login");
+          }, 1000);
         } else {
           setMessage(data.error || "Failed to add user");
           throw new Error(data.message);
