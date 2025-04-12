@@ -2,13 +2,15 @@
 import HeroSection from "@/app/components/heroSection/heroSection";
 import styles from "./page.module.css";
 import { useState } from "react";
+import UserCard from "../components/userCard/userCard";
+import ActionButton from "../components/actionButton/actionButton";
 
 export default function UserProfile() {
   const [message, setMessage] = useState("");
   const [users, setUsers] = useState([]);
 
   const handleFetchUsers = async () => {
-    setMessage("");
+    setMessage("Loading...");
     try {
       const res = await fetch("/api/users", {
         method: "GET",
@@ -24,28 +26,36 @@ export default function UserProfile() {
       console.error("Error fetching users:", error);
       setMessage("Error fetching users.");
     }
+    setMessage("");
   };
 
   return (
     <div>
       <HeroSection className={styles.small}></HeroSection>
       <main className={styles.main}>
-        <h2>Hello, User!</h2>
-        <button
-          onClick={handleFetchUsers}>
+        <h2 className={styles.greeting}>Hello, <span>User</span>!</h2>
+        <ActionButton
+          className={styles.btn}
+          clickHandler={handleFetchUsers}>
           Fetch Users
-        </button>
-        <div>
-          <ul>
-            {message ||
-              users.map((user, index) =>
-                <li key={index}>
-                  <p>{user.id}</p>
-                  <p>{user.username}</p>
-                  <p>{user.email}</p>
-                </li>
-              )}
-          </ul>
+        </ActionButton>
+        <div className={styles.userDiv}>
+          <div>
+            {message && <p className={styles.message}>{message}</p>}
+            {users?.length > 0 && (
+              <ul className={styles.userContainer}>
+                {users.map((user, index) => (
+                  <li key={index}>
+                    <UserCard
+                      id={user.id}
+                      username={user.username}
+                      email={user.email}
+                    />
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
         </div>
       </main>
     </div>

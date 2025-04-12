@@ -28,6 +28,7 @@
 
   --accent-500: #01baf1;
   --accent-700: #1f7698;
+  --accent-800: #1e4e63;
   --accent-900: #00141b;
 
   --black-100: #161616;
@@ -36,6 +37,7 @@
   --black-400: #5d5d5d;
   --black-500: #7d7d7d;
 
+  --gray-200: #edeff2;
   --gray-400: #bfbfbf;
   --gray-500: #9a9a9a;
 }
@@ -45,6 +47,7 @@
   --background: var(--white);
   --background-primary: var(--primary-500);
   --background-secondary: var(--secondary-500);
+  --backgroung-neutral: var(--gray-200);
   --link-hover: var(--accent-700);
   --subhero-color: var(--black-300);
   --actbtn-color: var(--secondary-500);
@@ -77,6 +80,7 @@
   --background: var(--black-200);
   --background-primary: var(--primary-500);
   --background-secondary: var(--secondary-500);
+  --backgroung-neutral: var(--black-200);
   --link-hover: var(--accent-700);
   --subhero-color: var(--black-300);
   --actbtn-color: var(--secondary-500);
