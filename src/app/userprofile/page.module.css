@@ -1,0 +1,8 @@
+.small {
+  height: 200px !important;
+}
+
+.main {
+  position: relative;
+  top: -2.5rem;
+}

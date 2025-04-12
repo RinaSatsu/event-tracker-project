@@ -4,6 +4,7 @@ import { useState } from "react";
 import HeroSection from "@/app/components/heroSection/heroSection";
 import InputField from "@/app/components/inputField/inputField";
 import styles from "./page.module.css";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const [values, setValues] = useState({
@@ -13,6 +14,7 @@ export default function LoginPage() {
 
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState("");
+  const router = useRouter();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,8 +42,10 @@ export default function LoginPage() {
 
         const data = await res.json();
         if (res.ok) {
-          setMessage("Login successful.");
-          //redirect
+          setMessage("Login successful. Redirecting...");
+          setTimeout(() => {
+            router.push("/userprofile");
+          }, 1000);
         } else {
           setMessage(data.error || "Failed to login.");
           console.warn("Login error:", data);
