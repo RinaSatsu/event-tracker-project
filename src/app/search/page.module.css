@@ -1,0 +1,13 @@
+.searchContainer {
+  display: flex;
+  gap: 2rem;
+  background-color: var(--background-secondary);
+  position: relative;
+  top: -80px;
+  left: calc(50vw - 550px);
+  max-width: 1086px;
+  padding: 1rem 2.25rem;
+  border-radius: 1.4rem;
+  justify-content: center;
+  align-items: center;
+}

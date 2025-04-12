@@ -1,8 +1,15 @@
 import React from "react";
-import styles from "../page.module.css";
-import EventCard from "../components/eventCard";
-import Link from "next/link";
-import SearchField from "../components/searchField";
+import styles from "./page.module.css";
+import EventCard from "../components/eventCard/eventCard";
+import InputField from "../components/inputField/inputField";
+import ToTopButton from "../components/toTopButton/toTopButton";
+import CardContainer from "../components/cardContainer/cardContainer";
+import SearchIcon from "/public/search.svg";
+import MapIcon from "/public/map-marker.svg";
+import CalendarIcon from "/public/calendar-clock.svg";
+import ActionButton from "../components/actionButton/actionButton";
+import HeroSection from "../components/heroSection/heroSection";
+import DateInput from "../components/dateInput/dateInput";
 
 export default function SearchPage() {
   const events = [{
@@ -30,35 +37,39 @@ export default function SearchPage() {
 
   return (
     <div className={styles.page}>
-      <main className={styles.main}>
-        <h1>SearchPage</h1>
-        <div style={{ display: "flex" }}>
-          <SearchField 
-            icon="search.svg"
+      <HeroSection
+        title="Find Events">
+        <div className={styles.searchContainer}>
+          <InputField
+            icon={<SearchIcon />}
             label="Search Event"
+            type="text"
+            placeholder=""
           />
-          <SearchField 
-            icon="map-marker.svg"
+          <InputField
+            icon={<MapIcon />}
             label="Place"
+            type="text"
+            placeholder=""
           />
-          <SearchField 
-            icon="calendar-clock.svg"
+          <DateInput
+            icon={<CalendarIcon />}
             label="Time"
           />
-          <button>Find</button>
+          <ActionButton
+            style={{ border: "3px solid var(--secondary-text-color)" }}>
+            Find
+          </ActionButton>
         </div>
-        <div>
-          <ul>
-            {events.map((event) => (
-              <li key={event.id}>
-                <EventCard event={event} />
-              </li>
-            ))}
-          </ul>
-        </div>
-        <button>View More</button>
-        <Link href="#top">Top</Link>
-      </main>
+      </HeroSection>
+      <CardContainer>
+        {events.map((event) => (
+          <li key={event.id}>
+            <EventCard event={event} />
+          </li>
+        ))}
+      </CardContainer>
+      <ToTopButton />
     </div>
   );
 }

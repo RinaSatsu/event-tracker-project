@@ -1,6 +1,9 @@
 'use client'
+
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
+import BackButton from "@/app/components/backButton";
+import HeroSection from "@/app/components/heroSection/heroSection";
 
 const EventPage = () => {
   const [events, setEvents] = useState([]);
@@ -40,6 +43,10 @@ const EventPage = () => {
 
   return (
     <div>
+      <HeroSection
+        title={`This is ${decodeURIComponent(eventName)} event`}>
+        <BackButton />
+      </HeroSection>
       <h2>Upcoming Events</h2>
       {statusMessage && <p>{statusMessage}</p>}
       <ul>

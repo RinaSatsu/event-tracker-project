@@ -1,0 +1,138 @@
+.card,
+.saveBtn .icon
+{
+  transition: 0.2s ease-in-out;
+}
+
+.card {
+  min-width: 344px;
+  height: 386px;
+  background: var(--card-bg-color);
+  border-radius: 30px;
+  box-shadow: 0px 19px 47px var(--light-shadow);
+}
+
+.image {
+  width: 100%;
+  height: 58%;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  background-image: url("/event-placeholder.webp");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: top;
+  justify-content: right;
+}
+
+.saveBtn {
+  position: relative;
+  border: none;
+  border-radius: 50%;
+  margin: 10px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.saveBtn .icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  fill: var(--background-primary);
+  width: 30px;
+  height: 30px;
+}
+
+.saveBtn .icon.hover {
+  opacity: 0;
+}
+
+.wrapper {
+  height: 42%;
+  padding: 1.25rem 1.4rem 0.8rem 1.75rem;
+}
+
+.contentContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.infoContainer {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.dateContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--title-font);
+  gap: 0.2rem;
+}
+
+.dateContainer>.month {
+  font-size: 0.875rem;
+  color: var(--month-color);
+}
+
+.dateContainer>.day {
+  font-size: 1.75rem;
+  color: var(--cont-text-color);
+}
+
+.dateContainer>.time {
+  font-size: 1rem;
+  color: var(--cont-subtext-color);
+  font-family: var(--main-font);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.info>.title {
+  font-size: 1.25rem;
+  font-family: var(--event-title);
+  color: var(--cont-text-color);
+}
+
+.info>.address {
+  font-size: 1rem;
+  color: var(--cont-subtext-color);
+}
+
+.buttonLink {
+  width: 130px;
+  border: 3px solid var(--accent-button-color);
+  align-self: flex-end;
+  color: var(--button-text-color);
+}
+
+.card:hover {
+  box-shadow: 0px 10px 10px 5px var(--dark-shadow);
+}
+
+.saveBtn:hover {
+  background-color: transparent;
+}
+
+.saveBtn:hover .icon.default {
+  opacity: 0;
+}
+
+.saveBtn:hover .icon.hover {
+  opacity: 1;
+}
+
+.buttonLink:hover {
+  cursor: pointer;
+  background-color: var(--accent-button-color);
+  color: var(--text-color);
+}
