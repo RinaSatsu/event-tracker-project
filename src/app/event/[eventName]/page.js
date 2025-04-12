@@ -5,68 +5,56 @@ import BackButton from "@/app/components/backButton";
 import axios from "axios";
 
 export default function EventPage({ params }) {
-  const routeParams = useParams();
   const eventName = params.eventName;
-
   const [eventData, setEventData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [statusMessage, setStatusMessage] = useState("Loading event...")
 
   useEffect(() => {
-    if (!eventName) return;
-
+    if (!eventName) {
+      setStatusMessage("No event name provided.")
+      return;
+    }
     async function fetchEventByName() {
       try {
        const API_KEY = "GTFQBVOZQRC57FFB4ZTZ"; //Hardcoded API Key(not ideal but fine for now)
 
-       //Searching for event by name
-       const searchResponse = await axios.get(
-        `https://www.eventbriteapi.com/v3/events/search`,{
-          params:{
-            q: eventName,
-            expand: "venue,organizer,ticket_availability", //Getting more info for a single API call
-          },
-          headers: {
-            Authorization: `Bearer ${API_KEY}`,
-          },
-        }
-      );
-      //Error handling for no results 
+       const searchURL = `https://www.eventbriteapi.com/v3/events/search?token=${API_KEY}`;
+       const searchResponse = await axios.get(searchURL, {
+        params: {
+          q: eventName,
+          expand: "venue, organizer, ticket_availability"
+        },
+       });
       if(!searchResponse.data.events || searchResponse.data.events.length === 0) {
-        throw new Error("No matching events found");
+        setStatusMessage("No matching events found.");
+        return
       }
 
       const matchedEvent = searchResponse.data.events[0];
-
-      const eventResponse = await axios.get(
-        `https://www.eventbriteapi.com/v3/events/${matchedEvent.id}/`,
-        {
-          params: {
-            expand: "venue,organizer,ticket_availability",
-          },
-          headers: {
-            Authorization: `Bearer ${API_KEY}`,
-          },
-        }
-      );
-
+      
+      const eventURL = `https://www.eventbriteapi.com/v3/events${matchedEvent.id}/?token=${API_KEY}`;
+      const eventResponse = await axios.get(eventURL, {
+        params: {
+          expand: "venue,organizer,ticket_availablity",
+        },
+      });
+      
       setEventData(eventResponse.data);
-    } catch (err)
-    {
-  setError(err.message);
-  console.error("Fetch error:", err);
- } finally {
-  setLoading(false);
- }   
-}
+      setStatusMessage("");
+    } catch (err) {
+      console.error("fetch error:", err);
+      setStatusMessage("An error occured: " + err.message);
+    }
+  }
 
 fetchEventByName();
 }, [eventName]);
 
-if (loading) return <div>Loading event...</div>;
-if (error) return <div>Error: {error}</div>;
-if (!eventData) return <div>No event found.</div>;
+let content;
 
+if (statusMessage) {
+  content = <div>{statusMessage}</div>;
+} else if (eventData){
 const {
   name,
   start,
@@ -78,7 +66,7 @@ const {
   ticket_availability,
 } = eventData;
 
-  return (
+  content = (
     <div>
       <h1>{name?.text}</h1>
       {logo?.url && (
@@ -110,8 +98,14 @@ const {
             <strong>Tickets</strong> {ticket_availability.is_sold_out ? "Sold Out" : "Available"}
           </div>
       )}
-  
-      <BackButton />
     </div>
   );
+}
+
+return (
+  <div>
+    {content}
+    <BackButton/>
+  </div>
+);
 }
