@@ -84,7 +84,6 @@ export default function RegisterPage() {
 
     if (Object.keys(validationErrors).length === 0) {
       const { username, email, password } = values;
-      console.log(JSON.stringify({ username, email, password }));
       try {
         const res = await fetch("/api/register", {
           method: "POST",

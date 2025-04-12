@@ -28,9 +28,28 @@ export default function LoginPage() {
     if (!values.password) errs.password = "Password is required.";
 
     setErrors(errs);
-    
+
     if (Object.keys(errs).length === 0) {
-      setMessage("Signing in...", values);
+      const { email, password } = values;
+      try {
+        const res = await fetch("/api/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          setMessage("Login successful.");
+          //redirect
+        } else {
+          setMessage(data.error || "Failed to login.");
+          console.warn("Login error:", data);
+        }
+      } catch (error) {
+        console.error("Error logging in: ", error);
+        setMessage("An unexpected error occurred.");
+      }
     } else {
       setMessage("");
     }
