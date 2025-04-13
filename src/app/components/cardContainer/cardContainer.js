@@ -1,4 +1,3 @@
-import ActionButton from "@/app/components/actionButton/actionButton";
 import styles from "./cardContainer.module.css";
 
 export default function CardContainer({ children }) {
@@ -9,7 +8,9 @@ export default function CardContainer({ children }) {
           {children}
         </ul>
       </div>
-      <ActionButton className={styles.moreBtn}>View All</ActionButton>
+      {/* <ActionButton 
+      className={styles.moreBtn}
+      >View All</ActionButton> */}
     </main>
   );
 }

@@ -8,6 +8,7 @@ import CardContainer from "./components/cardContainer/cardContainer";
 import eventData from "/public/events.json";
 import fetchEvents from "../lib/fetchEvents";
 import ViewAllButton from "./components/viewAllButton/viewAllButton";
+import ActionButton from "@/app/components/actionButton/actionButton";
 
 export default function Home() {
   const [allevents, setAllEvents] = useState([]);
@@ -21,7 +22,7 @@ export default function Home() {
 
     getEvents();
   }, []);
-  
+
   const handleViewAll = () => {
     setVisibleCount(prevCount => prevCount + 9);
   };
@@ -51,9 +52,11 @@ export default function Home() {
         ))}
       </CardContainer>
       {visibleCount < allevents.length && (
-        <div className={styles.viewAllContainer}>
-          <ViewAllButton onClick={handleViewAll} />
-        </div>
+        <ActionButton
+          clickHandler={handleViewAll}
+          className={styles.moreBtn}>
+          View All
+        </ActionButton>
       )}
       <ToTopButton />
     </div>
