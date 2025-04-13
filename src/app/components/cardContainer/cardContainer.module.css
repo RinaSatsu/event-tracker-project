@@ -21,3 +21,9 @@
   gap: 1.75rem;
   width: 100%;
 }
+
+.moreBtn {
+  position: relative;
+  top: 26px;
+  width: 220px;
+}

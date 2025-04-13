@@ -50,9 +50,3 @@
   left: calc(50vw - 115px);
   width: 210px;
 }
-
-.moreBtn {
-  position: relative;
-  top: 26px;
-  width: 220px;
-}
