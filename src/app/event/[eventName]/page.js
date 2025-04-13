@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation';
 import BackButton from "@/app/components/backButton";
 import HeroSection from "@/app/components/heroSection/heroSection";
 
-const EventPage = () => {
+export default function EventPage() {
   const [events, setEvents] = useState([]);
   const [statusMessage, setStatusMessage] = useState('Loading events...');
 
@@ -15,7 +15,7 @@ const EventPage = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const apiKey = 'BW7AXlRXKWgiAYSkY71zNBIAgFqUMuCn'; 
+        const apiKey = 'BW7AXlRXKWgiAYSkY71zNBIAgFqUMuCn';
         const response = await fetch(
           `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${encodeURIComponent(keyword)}&countryCode=CA&locale=en-CA&apikey=${apiKey}`
         );
@@ -37,7 +37,6 @@ const EventPage = () => {
         setStatusMessage('An error occurred while fetching events.');
       }
     };
-
     fetchEvents();
   }, [keyword]);
 
@@ -73,5 +72,3 @@ const EventPage = () => {
     </div>
   );
 };
-
-export default EventPage;

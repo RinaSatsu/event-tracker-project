@@ -1,0 +1,37 @@
+.user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.625rem 1rem;
+}
+
+.userContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.username {
+  font-weight: 800;
+  color: var(--cont-text-color);
+}
+
+.email {
+  font-size: .9em;
+  color: var(--cont-subtext-color);
+}
+
+.image {
+  width: 60px;
+  height: 60px;
+  background: var(--secondary-500);
+  background: linear-gradient(295deg, var(--accent-800) 31%, var(--accent-500) 100%);
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+
+.user:hover {
+  background-color: var(--backgroung-neutral);
+}

@@ -14,7 +14,7 @@
   align-items: center;
   justify-content: space-between;
   background-color: var(--background-primary);
-  padding: 1.4rem 3rem;
+  padding: 1rem 3rem;
   border-radius: 0 0 16px 16px;
   clip-path: polygon(0% 0%, 100% 0%, 97% 100%, 3% 100%);
 }
