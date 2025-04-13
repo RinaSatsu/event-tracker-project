@@ -7,7 +7,6 @@ import ToTopButton from "./components/toTopButton/toTopButton";
 import CardContainer from "./components/cardContainer/cardContainer";
 import eventData from "/public/events.json";
 import fetchEvents from "../lib/fetchEvents";
-import ViewAllButton from "./components/viewAllButton/viewAllButton";
 
 export default function Home() {
   const [allevents, setAllEvents] = useState([]);
@@ -21,12 +20,10 @@ export default function Home() {
 
     getEvents();
   }, []);
-  
+
   const handleViewAll = () => {
     setVisibleCount(prevCount => prevCount + 9);
   };
-
-  const visibleEvents = allevents.slice(0, visibleCount);
 
   return (
     <div className={styles.page}>
@@ -43,18 +40,15 @@ export default function Home() {
           Discover
         </ActionLink>
       </section>
-      <CardContainer>
-        {visibleEvents.map((event) => (
+      <CardContainer
+        visible={visibleCount < allevents.length}
+        onClick={handleViewAll}>
+        {allevents.slice(0, visibleCount).map((event) => (
           <li key={event.id}>
             <EventCard event={event} />
           </li>
         ))}
       </CardContainer>
-      {visibleCount < allevents.length && (
-        <div className={styles.viewAllContainer}>
-          <ViewAllButton onClick={handleViewAll} />
-        </div>
-      )}
       <ToTopButton />
     </div>
   );
