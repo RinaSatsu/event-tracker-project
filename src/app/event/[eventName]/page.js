@@ -44,7 +44,7 @@ const EventPage = () => {
   return (
     <div>
       <HeroSection
-        title={`This is ${decodeURIComponent(eventName)} event`}>
+        title={`This is ${decodeURIComponent(keyword)} event`}>
         <BackButton />
       </HeroSection>
       <h2>Upcoming Events</h2>
