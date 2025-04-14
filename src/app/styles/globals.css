@@ -18,7 +18,7 @@ body {
   overflow-x: hidden;
   font-family: var(--main-font);
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
+  scroll-padding-top: 3rem;
 }
 
 body {
