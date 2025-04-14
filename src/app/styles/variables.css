@@ -72,6 +72,7 @@
   --cal-accent: var(--accent-500);
   --cal-secondary: var(--secondary-500);
   --cal-tertiary: var(--tertiary-500);
+  --cal-text-special: var(--primary-800);
 
   --hero-background: url("/light-unsplash.webp");
   --hero-shadow: rgba(0, 0, 0, 0.25);
@@ -108,6 +109,7 @@
   --cal-accent: var(--accent-600);
   --cal-secondary: var(--secondary-600);
   --cal-tertiary: var(--tertiary-600);
+  --cal-text-special: var(--primary-200);
 
   --hero-background: url("/dark-unsplash.webp");
   --hero-shadow: rgba(217, 217, 217, 0.1);

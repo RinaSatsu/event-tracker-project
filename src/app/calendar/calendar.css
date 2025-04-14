@@ -1,23 +1,3 @@
-.calendar-page {
-  position: relative;
-  top: -2.5rem;
-  display: flex;
-  flex-direction: column;
-  max-width: 900px;
-  margin: 0 auto 2rem auto;
-  padding: 1rem;
-  font-family: var(--main-font);
-}
-
-.calendar-container {
-  padding: 1.5rem;
-  background: var(--card-bg-color);
-  border-radius: 30px;
-  box-shadow: 0px 10px 25px 5px var(--dark-shadow);
-  max-width: 600px;
-  align-self: center;
-}
-
 .react-calendar {
   width: 100%;
   border: none;
@@ -56,10 +36,6 @@
   color: var(--cont-text-color);
 }
 
-.react-calendar__month-view__days__day--neighboringMonth abbr {
-  color: var(--cont-subtext-color);
-}
-
 .react-calendar__month-view__days__day--weekend abbr {
   color: var(--background-primary);
   font-weight: 600;
@@ -70,41 +46,22 @@
 }
 
 .has-concert {
-  background: var(--cal-secondary) !important;
+  background: var(--cal-secondary);
   position: relative;
+}
+
+.react-calendar__month-view__days__day--weekend.has-concert abbr,
+.react-calendar__month-view__days__day--weekend.react-calendar__tile--range abbr,
+.react-calendar__month-view__days__day--weekend.react-calendar__tile--now abbr {
+  color: var(--cal-text-special);
 }
 
 .react-calendar__tile--range {
   background-color: var(--cal-accent) !important;
 }
 
-/* here */
-.concert-marker {
-  position: absolute;
-  bottom: 3px;
-  right: 3px;
-  font-size: 12px;
-}
-
-.concerts-list {
-  margin-top: 2rem;
-  background: #f8f9fa;
-  padding: 1.5rem;
-  border-radius: 8px;
-}
-
-.concerts-list ul {
-  list-style: none;
-  padding: 0;
-  margin-top: 1rem;
-}
-
-.concerts-list li {
-  padding: 0.75rem;
-  margin-bottom: 0.5rem;
-  background: white;
-  border-radius: 6px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+.react-calendar__month-view__days__day--neighboringMonth abbr {
+  color: var(--cont-subtext-color);
 }
 
 .today-button {

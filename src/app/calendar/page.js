@@ -7,6 +7,9 @@ import { format, isSameDay } from 'date-fns';
 import 'react-calendar/dist/Calendar.css';
 import './calendar.css';
 import HeroSection from "@/app/components/heroSection/heroSection";
+import StarIcon from "/public/star.svg";
+import EventListCard from "../components/userCard/eventListCard";
+import styles from "./page.module.css";
 
 const concerts = [
   { id: 1, name: "Green Day", date: new Date(2025, 5, 15), venue: "Rogers Centre" },
@@ -18,7 +21,8 @@ const concerts = [
   { id: 7, name: "Red Hot Chili Peppers", date: new Date(2025, 6, 8), venue: "Rogers Centre" },
   { id: 8, name: "Arctic Monkeys", date: new Date(2025, 8, 3), venue: "Budweiser Stage" },
   { id: 9, name: "Queens of the Stone Age", date: new Date(2025, 7, 25), venue: "History" },
-  { id: 10, name: "The Smashing Pumpkins", date: new Date(2025, 6, 14), venue: "Budweiser Stage" }
+  { id: 10, name: "The Smashing Pumpkins", date: new Date(2025, 6, 14), venue: "Budweiser Stage" },
+  { id: 11, name: "Green Day 2", date: new Date(2025, 5, 15), venue: "Rogers Centre" }
 ]; //months in javascript are from 0-11, which is why it's showing the 5th month as June and not May.. weird! 
 
 export default function ConcertCalendarPage() {
@@ -30,14 +34,14 @@ export default function ConcertCalendarPage() {
       <HeroSection
         title="Plan with Calendar">
       </HeroSection>
-      <main className="calendar-page">
-        <div className="calendar-container">
+      <main className={styles.calendarPage}>
+        <div className={styles.calendarContainer}>
           <Calendar
             onChange={setDate}
             value={date}
             tileContent={({ date, view }) =>
               view === 'month' && concerts.some(show => isSameDay(show.date, date)) ? (
-                <div className="concert-marker">!</div>
+                <StarIcon className={styles.concertMarker} />
               ) : null
             }
             tileClassName={({ date, view }) =>
@@ -47,19 +51,21 @@ export default function ConcertCalendarPage() {
             }
           />
         </div>
-        <div className="concerts-list">
-          <h2>Shows on {format(date, 'MMMM d, yyyy')}</h2>
+        <div className={styles.concertsList}>
+          <h2>Events on {format(date, 'MMMM d, yyyy')}</h2>
           {todaysConcerts.length > 0 ? (
-            <ul>
+            <ul className={styles.eventContainer}>
               {todaysConcerts.map(show => (
                 <li key={show.id}>
-                  <strong>{show.name}</strong>
-                  <span className="venue"> at {show.venue}</span>
+                  <EventListCard
+                  name={show.name} 
+                  time={show.time}
+                  venue={show.venue} />
                 </li>
               ))}
             </ul>
           ) : (
-            <p className="no-shows">No shows scheduled for this date</p>
+            <p className={styles.noEvents}>No events scheduled for this date</p>
           )}
         </div>
       </main>
