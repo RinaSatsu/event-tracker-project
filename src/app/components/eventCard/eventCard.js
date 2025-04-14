@@ -22,8 +22,8 @@ export default function EventCard({ event }) {
           onClick={handleSaveEvent}>
           <StarIcon className={`${styles.icon} ${styles.default}`}/>
           <StarFullIcon className={`${styles.icon} ${styles.hover}`}/>
-  </button>
-</div>
+        </button>
+    </div>
       <div className={styles.wrapper}>
         <div className={styles.contentContainer}>
           <div className={styles.infoContainer}>
@@ -39,7 +39,7 @@ export default function EventCard({ event }) {
           </div>
           <Link
             className={`${styles.buttonLink} button-link`}
-            href={`/event/${encodeURIComponent(event.link)}`}>
+            href={`/event/${event.id}/${encodeURIComponent(event.name)}`}>
             See More
           </Link>
         </div>
