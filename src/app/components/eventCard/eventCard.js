@@ -16,13 +16,14 @@ export default function EventCard({ event }) {
   return (
     <div className={styles.card}>
       <div className={styles.image}>
+        <img src={event.image} alt={`Banner for ${event.name}`}/>
         <button 
           className={styles.saveBtn}
           onClick={handleSaveEvent}>
           <StarIcon className={`${styles.icon} ${styles.default}`}/>
           <StarFullIcon className={`${styles.icon} ${styles.hover}`}/>
         </button>
-      </div>
+    </div>
       <div className={styles.wrapper}>
         <div className={styles.contentContainer}>
           <div className={styles.infoContainer}>
@@ -38,7 +39,7 @@ export default function EventCard({ event }) {
           </div>
           <Link
             className={`${styles.buttonLink} button-link`}
-            href={`/event/${encodeURIComponent(event.link)}`}>
+            href={`/event/${event.id}?name=${encodeURIComponent(event.name)}`}>
             See More
           </Link>
         </div>
