@@ -4,10 +4,15 @@ export default async function fetchEvents({ keyword = '', dmaId = '505', date = 
     
     if (keyword) query += `&keyword=${encodeURIComponent(keyword)}`;
     if (dmaId) query += `&dmaId=${encodeURIComponent(dmaId)}`;
-    if (date) query += `&startDateTime=${encodeURIComponent(date)}`;
-    
+    if (date) {
+        const isoDate = new Date(date).toISOString();
+        query += `&startDateTime=${encodeURIComponent(isoDate)}`;
+    }
     try {
         const response = await fetch(`https://app.ticketmaster.com/discovery/v2/events.json${query}`);
+        if (!response.ok) {
+            throw new Error(`API error: ${response.status}`);
+        }
         const data = await response.json();
     
     if (data._embedded?.events) {
@@ -20,7 +25,6 @@ export default async function fetchEvents({ keyword = '', dmaId = '505', date = 
                 time: new Date(e.dates.start.dateTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
             },
             address: e._embedded.venues?.[0]?.name || 'Unknown venue',
-            link: e.name,
             image: e.images?.[0]?.url || null,
         }));
     }

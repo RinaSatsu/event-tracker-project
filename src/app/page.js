@@ -44,9 +44,7 @@ export default function Home() {
         visible={visibleCount < allevents.length}
         onClick={handleViewAll}>
         {allevents.slice(0, visibleCount).map((event) => (
-          <li key={event.id}>
-            <EventCard event={event} />
-          </li>
+            <EventCard key={event.id}event={event} />
         ))}
       </CardContainer>
       <ToTopButton />

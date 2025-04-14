@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 import BackButton from '@/app/components/backButton';
 import HeroSection from '@/app/components/heroSection/heroSection';
 
@@ -9,8 +9,11 @@ export default function EventDetailPage() {
   const [eventData, setEventData] = useState(null);
   const [statusMessage, setStatusMessage] = useState('Loading event details...');
   
+  const params = useParams();
+  const searchParams = useSearchParams();
 
-  const { eventId, eventName } = useParams();
+  const eventId = params.eventId;
+  const eventName = searchParams.get('name')
 
   useEffect(() => {
     const fetchEventById = async () => {
@@ -41,7 +44,7 @@ export default function EventDetailPage() {
   return (
     <div>
       <HeroSection 
-        title={eventData?.name || decodeURIComponent(eventName)}>
+        title={eventData?.name || (eventName? decodeURIComponent(eventName) : '')}>
         <BackButton />
       </HeroSection>
 
