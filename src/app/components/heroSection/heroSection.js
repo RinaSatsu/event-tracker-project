@@ -1,3 +1,4 @@
+'use client';
 import styles from "./heroSection.module.css";
 
 export default function HeroSection({ title, className, children }) {

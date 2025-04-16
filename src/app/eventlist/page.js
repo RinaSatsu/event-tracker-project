@@ -1,6 +1,8 @@
 'use client';
 import { useState, useEffect } from 'react';
-import EventCard from '../components/eventCard/eventCard';
+import HeroSection from "../components/heroSection/heroSection";
+import EventCard from "../components/eventCard/eventCard";
+import { getFavorites } from '../utils/favoritesService';
 import './eventlist.css';
 
 export default function EventListPage() {
@@ -11,53 +13,32 @@ export default function EventListPage() {
   useEffect(() => {
     const loadData = async () => {
       try {
-
         const response = await fetch('/events.json');
+        if (!response.ok) throw new Error('Failed to load events');
         const data = await response.json();
         setEvents(data);
-        
-
-        const savedFavorites = JSON.parse(localStorage.getItem('favoriteEvents')) || [];
-        setFavorites(savedFavorites);
+        setFavorites(getFavorites());
       } catch (error) {
-        console.error('Error loading data:', error);
+        console.error('Error:', error);
       } finally {
         setIsLoading(false);
       }
     };
 
     loadData();
+
+    const handleStorageChange = () => {
+      setFavorites(getFavorites());
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
   }, []);
-
-  const toggleFavorite = (event) => {
-    const existingIndex = favorites.findIndex(fav => fav.id === event.id);
-    let newFavorites;
-
-    if (existingIndex >= 0) {
-
-      newFavorites = favorites.filter(fav => fav.id !== event.id);
-    } else {
-
-      newFavorites = [...favorites, {
-        ...event,
-
-        date: event.date instanceof Date ? event.date : {
-          day: event.date.day,
-          month: event.date.month,
-          year: event.date.year,
-          time: event.date.time
-        }
-      }];
-    }
-
-    setFavorites(newFavorites);
-    localStorage.setItem('favoriteEvents', JSON.stringify(newFavorites));
-  };
 
   if (isLoading) {
     return (
       <div className="container">
-        <h1 className="pageHeader">Upcoming Events</h1>
+        <HeroSection title="Upcoming Events" />
         <div className="loadingSpinner">Loading events...</div>
       </div>
     );
@@ -65,7 +46,7 @@ export default function EventListPage() {
 
   return (
     <div className="container">
-      <h1 className="pageHeader">Upcoming Events</h1>
+      <HeroSection title="Upcoming Events" />
       
       <h2>All Events</h2>
       {events.length === 0 ? (
@@ -75,12 +56,7 @@ export default function EventListPage() {
       ) : (
         <div className="eventsGrid">
           {events.map(event => (
-            <EventCard 
-              key={event.id} 
-              event={event}
-              isFavorite={favorites.some(fav => fav.id === event.id)}
-              onToggleFavorite={() => toggleFavorite(event)}
-            />
+            <EventCard key={event.id} event={event} />
           ))}
         </div>
       )}
@@ -93,12 +69,7 @@ export default function EventListPage() {
       ) : (
         <div className="eventsGrid">
           {favorites.map(event => (
-            <EventCard 
-              key={event.id} 
-              event={event}
-              isFavorite={true}
-              onToggleFavorite={() => toggleFavorite(event)}
-            />
+            <EventCard key={event.id} event={event} />
           ))}
         </div>
       )}
