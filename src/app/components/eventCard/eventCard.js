@@ -5,7 +5,11 @@ import StarIcon from "/public/star.svg";
 import StarFullIcon from "/public/star-full.svg";
 
 const formatMonth = (month) => {
+  if (isNaN(month)) {
   return month.trim().substring(0, 3).toUpperCase();
+  } else {
+    return new Date(month).toLocaleString('default', { month: 'short' }).toUpperCase();
+  }
 }
 
 const handleSaveEvent = (event) => {
@@ -15,15 +19,18 @@ const handleSaveEvent = (event) => {
 export default function EventCard({ event }) {
   return (
     <div className={styles.card}>
-      <div className={styles.image}>
-        <img src={event.image} alt={`Banner for ${event.name}`}/>
-        <button 
+      <div
+        className={styles.image}
+        style={{
+          backgroundImage: `url(${event.image || '/event-placeholder.webp'})`,
+        }}>
+        <button
           className={styles.saveBtn}
           onClick={handleSaveEvent}>
-          <StarIcon className={`${styles.icon} ${styles.default}`}/>
-          <StarFullIcon className={`${styles.icon} ${styles.hover}`}/>
+          <StarIcon className={`${styles.icon} ${styles.default}`} />
+          <StarFullIcon className={`${styles.icon} ${styles.hover}`} />
         </button>
-    </div>
+      </div>
       <div className={styles.wrapper}>
         <div className={styles.contentContainer}>
           <div className={styles.infoContainer}>
