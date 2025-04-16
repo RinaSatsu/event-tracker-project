@@ -23,8 +23,8 @@ export default function Navbar() {
             </Link></li>
             <li><Link
               className={styles.link}
-              href="/favevents">
-              List
+              href="/eventlist">
+              Event List
             </Link></li>
             <li><Link
               className={styles.link}

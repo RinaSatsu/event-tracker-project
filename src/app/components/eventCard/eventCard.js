@@ -1,28 +1,33 @@
-'use client'
+'use client';
 import Link from "next/link";
 import styles from "./eventCard.module.css";
 import StarIcon from "/public/star.svg";
 import StarFullIcon from "/public/star-full.svg";
 
 const formatMonth = (month) => {
-  return month.trim().substring(0, 3).toUpperCase();
-}
+  return month?.trim()?.substring(0, 3)?.toUpperCase() || '';
+};
 
-const handleSaveEvent = (event) => {
-  console.log(event);
-} 
+const EventCard = ({ event, isFavorite, onToggleFavorite }) => {
+  const handleSaveEvent = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    onToggleFavorite();
+  };
 
-export default function EventCard({ event }) {
   return (
     <div className={styles.card}>
-      <div className={styles.image}>
-        <button 
-          className={styles.saveBtn}
-          onClick={handleSaveEvent}>
-          <StarIcon className={`${styles.icon} ${styles.default}`}/>
-          <StarFullIcon className={`${styles.icon} ${styles.hover}`}/>
-        </button>
-      </div>
+      <button 
+        className={`${styles.saveBtn} ${isFavorite ? styles.active : ''}`}
+        onClick={handleSaveEvent}
+        aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
+      >
+        {isFavorite ? (
+          <StarFullIcon className={`${styles.icon} ${styles.hover}`} />
+        ) : (
+          <StarIcon className={`${styles.icon} ${styles.default}`} />
+        )}
+      </button>
       <div className={styles.wrapper}>
         <div className={styles.contentContainer}>
           <div className={styles.infoContainer}>
@@ -37,12 +42,15 @@ export default function EventCard({ event }) {
             </div>
           </div>
           <Link
-            className={`${styles.buttonLink} button-link`}
-            href={`/event/${encodeURIComponent(event.link)}`}>
+            className={styles.buttonLink}
+            href={`/event/${encodeURIComponent(event.link)}`}
+          >
             See More
           </Link>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default EventCard;

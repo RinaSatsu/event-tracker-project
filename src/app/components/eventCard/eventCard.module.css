@@ -1,138 +1,134 @@
-.card,
-.saveBtn .icon
-{
-  transition: 0.2s ease-in-out;
-}
-
 .card {
-  min-width: 344px;
-  height: 386px;
-  background: var(--card-bg-color);
-  border-radius: 30px;
-  box-shadow: 0px 19px 47px var(--light-shadow);
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  background: white;
 }
 
-.image {
-  width: 100%;
-  height: 58%;
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
-  background-image: url("/event-placeholder.webp");
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: top;
-  justify-content: right;
+.card:hover {
+  transform: translateY(-4px);
 }
+
 
 .saveBtn {
-  position: relative;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  background: rgba(0, 0, 0, 0.5);
   border: none;
   border-radius: 50%;
-  margin: 10px;
-  width: 36px;
-  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 2;
 }
 
-.saveBtn .icon {
+.saveBtn:hover {
+  background: rgba(0, 0, 0, 0.7);
+  transform: scale(1.1);
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  transition: all 0.2s ease;
+}
+
+.icon.default {
+  opacity: 1;
+  fill: #ffffff;
+}
+
+.icon.hover {
   position: absolute;
-  top: 0;
-  left: 0;
-  fill: var(--background-primary);
-  width: 30px;
-  height: 30px;
+  opacity: 0;
+  fill: #FFD700;
 }
 
-.saveBtn .icon.hover {
+.saveBtn.active .icon.default {
   opacity: 0;
 }
 
+.saveBtn.active .icon.hover {
+  opacity: 1;
+}
+
 .wrapper {
-  height: 42%;
-  padding: 1.25rem 1.4rem 0.8rem 1.75rem;
+  padding: 16px;
 }
 
 .contentContainer {
-  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 12px;
 }
 
 .infoContainer {
   display: flex;
-  gap: 0.75rem;
+  gap: 12px;
 }
 
 .dateContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: var(--title-font);
-  gap: 0.2rem;
+  min-width: 60px;
 }
 
-.dateContainer>.month {
-  font-size: 0.875rem;
-  color: var(--month-color);
+.month {
+  font-size: 14px;
+  font-weight: bold;
+  color: #666;
+  text-transform: uppercase;
 }
 
-.dateContainer>.day {
-  font-size: 1.75rem;
-  color: var(--cont-text-color);
+.day {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
 }
 
-.dateContainer>.time {
-  font-size: 1rem;
-  color: var(--cont-subtext-color);
-  font-family: var(--main-font);
+.time {
+  font-size: 12px;
+  color: #666;
 }
 
 .info {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 4px;
 }
 
-.info>.title {
-  font-size: 1.25rem;
-  font-family: var(--event-title);
-  color: var(--cont-text-color);
+.title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
 }
 
-.info>.address {
-  font-size: 1rem;
-  color: var(--cont-subtext-color);
+.address {
+  font-size: 14px;
+  color: #666;
 }
 
 .buttonLink {
-  width: 130px;
-  border: 3px solid var(--accent-button-color);
-  align-self: flex-end;
-  color: var(--button-text-color);
-}
-
-.card:hover {
-  box-shadow: 0px 10px 10px 5px var(--dark-shadow);
-}
-
-.saveBtn:hover {
-  background-color: transparent;
-}
-
-.saveBtn:hover .icon.default {
-  opacity: 0;
-}
-
-.saveBtn:hover .icon.hover {
-  opacity: 1;
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #0066cc;
+  color: white;
+  text-align: center;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
 }
 
 .buttonLink:hover {
-  cursor: pointer;
-  background-color: var(--accent-button-color);
-  color: var(--text-color);
+  background-color: #0052a3;
 }
