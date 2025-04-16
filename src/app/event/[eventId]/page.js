@@ -8,12 +8,13 @@ import HeroSection from '@/app/components/heroSection/heroSection';
 export default function EventDetailPage() {
   const [eventData, setEventData] = useState(null);
   const [statusMessage, setStatusMessage] = useState('Loading event details...');
-  
+
   const params = useParams();
   const searchParams = useSearchParams();
 
   const eventId = params.eventId;
-  const eventName = searchParams.get('name')
+  const eventName = searchParams.get('name');
+  const targetWidth = 1024;
 
   useEffect(() => {
     const fetchEventById = async () => {
@@ -41,11 +42,14 @@ export default function EventDetailPage() {
     }
   }, [eventId]);
 
+  const eventImg = eventData?.images.reduce((prev, curr) =>
+    Math.abs(curr.width - targetWidth) < Math.abs(prev.width - targetWidth) ? curr : prev
+  );
+
   return (
     <div>
-      <HeroSection 
-        title={eventData?.name || (eventName? decodeURIComponent(eventName) : '')}>
-        <BackButton />
+      <HeroSection
+        title={eventData?.name || (eventName ? decodeURIComponent(eventName) : '')}>
       </HeroSection>
 
       {statusMessage && <p>{statusMessage}</p>}
@@ -55,9 +59,8 @@ export default function EventDetailPage() {
           <h2>{eventData.name}</h2>
           {eventData.images && eventData.images.length > 0 && (
             <img
-              src={eventData.images[0].url}
+              src={eventImg.url}
               alt={`Banner for ${eventData.name}`}
-              style={{ maxWidth: '400px', height: 'auto' }}
             />
           )}
           <p>{new Date(eventData.dates.start.dateTime).toLocaleString()}</p>
@@ -65,13 +68,14 @@ export default function EventDetailPage() {
           {eventData._embedded?.attractions && eventData._embedded.attractions.length > 0 && (
             <p>Attraction: {eventData._embedded.attractions[0].name}</p>
           )}
-            <p>
-                <strong><a href={eventData.url} target="_blank" rel="noopener noreferrer"> Buy Tickets</a></strong>
-            </p>
+          <p>
+            <strong><a href={eventData.url} target="_blank" rel="noopener noreferrer"> Buy Tickets</a></strong>
+          </p>
         </div>
       ) : (
         !statusMessage && <p>No event details found.</p>
       )}
+      <BackButton />
     </div>
   );
 }
