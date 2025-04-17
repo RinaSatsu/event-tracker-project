@@ -1,24 +1,24 @@
+function sortByDateAsc(a, b) {
+    const year = a.date.year;
+    const dateA = new Date(
+        year,
+        a.date.month - 1,
+        a.date.day,
+        ...a.date.time.split(":").map(Number)
+    );
+    const dateB = new Date(
+        year,
+        b.date.month - 1,
+        b.date.day,
+        ...b.date.time.split(":").map(Number)
+    );
+    return dateA - dateB;
+};
+
 export default async function fetchEvents({ keyword = '', dmaId = '505', date = '' } = {}) {
     const apiKey = 'BW7AXlRXKWgiAYSkY71zNBIAgFqUMuCn';
     const targetWidth = 600;
     let query = `?apikey=${apiKey}&countryCode=CA&locale=en-CA`;
-
-    const compareEventsByDate = ((a, b) => {
-        const year = a.date.year;
-        const dateA = new Date(
-            year,
-            a.date.month - 1,
-            a.date.day,
-            ...a.date.time.split(":").map(Number)
-        );
-        const dateB = new Date(
-            year,
-            b.date.month - 1,
-            b.date.day,
-            ...b.date.time.split(":").map(Number)
-        );
-        return dateA - dateB;
-    });
 
     if (keyword) query += `&keyword=${encodeURIComponent(keyword)}`;
     if (dmaId) query += `&dmaId=${encodeURIComponent(dmaId)}`;
@@ -47,7 +47,7 @@ export default async function fetchEvents({ keyword = '', dmaId = '505', date = 
                 image: e.images?.reduce((prev, curr) =>
                     Math.abs(curr.width - targetWidth) < Math.abs(prev.width - targetWidth) ? curr : prev
                 )?.url || null,
-            })).sort(compareEventsByDate);
+            })).sort(sortByDateAsc);
         }
 
         return [];

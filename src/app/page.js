@@ -21,9 +21,10 @@ export default function Home() {
     getEvents();
   }, []);
 
-  const handleViewAll = () => {
+  const handleViewMore = () => {
     setVisibleCount(prevCount => prevCount + 9);
   };
+
 
   return (
     <div className={styles.page}>
@@ -42,9 +43,9 @@ export default function Home() {
       </section>
       <CardContainer
         visible={visibleCount < allevents.length}
-        onClick={handleViewAll}>
+        onClick={handleViewMore}>
         {allevents.slice(0, visibleCount).map((event) => (
-            <EventCard key={event.id}event={event} />
+          <EventCard key={event.id} event={event} />
         ))}
       </CardContainer>
       <ToTopButton />

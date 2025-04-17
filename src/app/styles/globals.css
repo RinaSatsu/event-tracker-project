@@ -45,8 +45,10 @@ a {
 
 button,
 .button-link {
+  display: block;
   border: 3px solid var(--accent-500);
   color: var(--cont-text-color);
+  font-family: var(--main-font);
   border-radius: 20px;
   padding: 0.4rem;
   font-size: 1.1rem;

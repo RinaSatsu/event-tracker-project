@@ -1,0 +1,74 @@
+.eventPage {
+  position: relative;
+  top: -2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto 2rem auto;
+  padding: 1rem;
+  font-family: var(--main-font);
+  color: var(--cont-text-color);
+}
+
+.eventContainer {
+  display: flex;
+  gap: 1rem;
+}
+
+.eventContainer img {
+  flex: 1;
+  height: auto;
+  align-self: start;
+  max-width: 40%;
+}
+
+.eventInfo  {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: space-between;
+}
+
+.dataContainer {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.dataContent {
+  flex: auto;
+  max-width: 33.3%;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.dataContent.location {
+  max-width: 60%;
+}
+
+.dataContent svg {
+  align-self: center;
+  width: 36px;
+  height: 36px;
+  fill: var(--cont-text-color);
+}
+
+.dataContent div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.dataContent .dataTitle,
+.title {
+  font-weight: 700;
+}
+
+.buyBtn {
+  max-width: 200px;
+}
+
+.backBtn {
+  max-width: 300px;
+}
