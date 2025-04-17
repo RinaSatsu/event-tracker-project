@@ -24,7 +24,7 @@ export default function Navbar() {
             <li><Link
               className={styles.link}
               href="/eventlist">
-              Event List
+              List
             </Link></li>
             <li><Link
               className={styles.link}

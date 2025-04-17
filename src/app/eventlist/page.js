@@ -46,8 +46,9 @@ export default function EventListPage() {
 
   return (
     <div className="container">
-      <HeroSection title="Upcoming Events" />
-      
+      <HeroSection 
+        title="Your Favorite Events">
+      </HeroSection>
       <h2>All Events</h2>
       {events.length === 0 ? (
         <div className="emptyState">
@@ -60,7 +61,7 @@ export default function EventListPage() {
           ))}
         </div>
       )}
-      
+
       <h2>Your Saved Events</h2>
       {favorites.length === 0 ? (
         <div className="emptyState">
