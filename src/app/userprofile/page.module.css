@@ -21,6 +21,12 @@
   color: var(--background-primary);
 }
 
+.logoutBtn {
+  align-self: center;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
 .btn {
   position: relative;
   top: 26px;

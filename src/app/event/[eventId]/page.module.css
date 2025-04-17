@@ -3,7 +3,7 @@
   top: -2.5rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 2.5rem;
   max-width: 1200px;
   margin: 0 auto 2rem auto;
   padding: 1rem;
@@ -13,7 +13,7 @@
 
 .eventContainer {
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
 }
 
 .eventContainer img {
@@ -34,6 +34,7 @@
 .dataContainer {
   display: flex;
   gap: 0.8rem;
+  font-size: 0.9rem;
 }
 
 .dataContent {
@@ -70,5 +71,5 @@
 }
 
 .backBtn {
-  max-width: 300px;
+  max-width: 250px;
 }

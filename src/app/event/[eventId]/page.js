@@ -82,30 +82,30 @@ export default function EventDetailPage() {
       <main className={styles.eventPage}>
         {statusMessage && <p>{statusMessage}</p>}
         {eventData ? (
-          <div class={styles.eventContainer}>
+          <div className={styles.eventContainer}>
             {eventData.images && eventData.images.length > 0 && (
               <img
                 src={eventImg.url}
                 alt={`Banner for ${eventData.name}`}
               />
             )}
-            <div class={styles.eventInfo}>
+            <div className={styles.eventInfo}>
               <div className={styles.dataContainer}>
-                <div class={styles.dataContent}>
+                <div className={styles.dataContent}>
                   <CalendarIcon />
                   <div>
                     <p className={styles.dataTitle}>Date:</p>
                     <p>{formatDate(eventData.dates.start.dateTime)}</p>
                   </div>
                 </div>
-                <div class={styles.dataContent}>
+                <div className={styles.dataContent}>
                   <ClockIcon />
                   <div>
                     <p className={styles.dataTitle}>Time:</p>
                     <p>{formatTime(eventData.dates.start.dateTime)}</p>
                   </div>
                 </div>
-                <div class={`${styles.dataContent} ${styles.location}`}>
+                <div className={`${styles.dataContent} ${styles.location}`}>
                   <MapIcon />
                   <div>
                     <p className={styles.dataTitle}>Location:</p>
@@ -135,7 +135,7 @@ export default function EventDetailPage() {
         ) : (
           !statusMessage && <p>No event details found.</p>
         )}
-        <BackButton style={{ width: "250px", alignSelf: "center"  }} />
+        <BackButton style={{ width: "200px", alignSelf: "center"  }} />
       </main>
     </div>
   );
