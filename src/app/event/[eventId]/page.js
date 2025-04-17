@@ -9,6 +9,7 @@ import CalendarIcon from "/public/calendar-clock.svg";
 import ClockIcon from "/public/clock-regular.svg";
 import MapIcon from "/public/map-marker.svg";
 import ActionLink from '@/app/components/actionButton/actionLink';
+import FavoriteButton from '@/app/components/favoriteButton/favoriteButton';
 
 
 function formatDate(date) {
@@ -23,8 +24,8 @@ function formatDate(date) {
 
 
 function formatTime(date) {
-  if (!date) 
-    return "No time available"
+  if (!date)
+    return "";
   const datef = new Date(date);
 
   return new Intl.DateTimeFormat('en-US', {
@@ -75,6 +76,8 @@ export default function EventDetailPage() {
     Math.abs(curr.width - targetWidth) < Math.abs(prev.width - targetWidth) ? curr : prev
   );
 
+  console.log(eventData);
+
   return (
     <div>
       <HeroSection
@@ -82,7 +85,7 @@ export default function EventDetailPage() {
       </HeroSection>
 
       <main className={styles.eventPage}>
-      {statusMessage && <p className={styles.message}>{statusMessage}</p>}
+        {statusMessage && <p className={styles.message}>{statusMessage}</p>}
         {eventData ? (
           <div className={styles.eventContainer}>
             {eventData.images && eventData.images.length > 0 && (
@@ -104,7 +107,9 @@ export default function EventDetailPage() {
                   <ClockIcon />
                   <div>
                     <p className={styles.dataTitle}>Time:</p>
-                    <p>{formatTime(eventData.dates.start.dateTime)}</p>
+                    {eventData.dates?.start?.dateTime ?
+                      (<p>{formatTime(eventData.dates.start.dateTime)}</p>)
+                      : "No time available"}
                   </div>
                 </div>
                 <div className={`${styles.dataContent} ${styles.location}`}>
@@ -115,7 +120,22 @@ export default function EventDetailPage() {
                   </div>
                 </div>
                 <div>
-                  <button>Favorite</button>
+                  <FavoriteButton
+                    event={{
+                      id: eventData.id,
+                      name: eventData.name,
+                      date: {
+                        year: new Date(eventData.dates.start.dateTime || eventData.dates.start.localDate).toLocaleString('default', { year: 'numeric' }),
+                        month: new Date(eventData.dates.start.dateTime || eventData.dates.start.localDate).toLocaleString('default', { month: 'numeric' }),
+                        day: new Date(eventData.dates.start.dateTime || eventData.dates.start.localDate).getDate(),
+                        time: (eventData.dates.start.dateTime ? new Date(eventData.dates.start.dateTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false }) : null),
+                      },
+                      address: eventData._embedded.venues?.[0]?.name || 'Unknown venue',
+                      image: eventData.images?.reduce((prev, curr) =>
+                        Math.abs(curr.width - 600) < Math.abs(prev.width - 600) ? curr : prev
+                    )?.url || null
+                    }}
+                  />
                 </div>
               </div>
               {eventData.info && (
@@ -137,7 +157,7 @@ export default function EventDetailPage() {
         ) : (
           !statusMessage && <p>No event details found.</p>
         )}
-        <BackButton style={{ width: "200px", alignSelf: "center"  }} />
+        <BackButton style={{ width: "200px", alignSelf: "center" }} />
       </main>
     </div>
   );

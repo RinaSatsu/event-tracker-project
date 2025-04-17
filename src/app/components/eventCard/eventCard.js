@@ -14,10 +14,6 @@ const formatMonth = (month) => {
   }
 }
 
-const handleSaveEvent = (event) => {
-  console.log(event);
-} 
-
 export default function EventCard({ event }) {
   const [favorite, setFavorite] = useState(false);
 
@@ -53,7 +49,7 @@ export default function EventCard({ event }) {
           aria-label={favorite ? "Remove from favorites" : "Add to favorites"}
          >
           {favorite ? (
-            <StarFullIcon className={`${styles.icon} ${styles.hover}`} />
+            <StarFullIcon className={`${styles.icon} ${styles.full}`} />
           ) : (
             <StarIcon className={`${styles.icon} ${styles.default}`} />
           )}

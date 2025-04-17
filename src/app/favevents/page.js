@@ -23,7 +23,7 @@ function sortByDateAsc(a, b) {
   return dateA - dateB;
 };
 
-export default function EventListPage() {
+export default function FavEventsPage() {
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
