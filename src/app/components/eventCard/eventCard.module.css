@@ -1,9 +1,17 @@
-.card,
-.saveBtn .icon
-{
-  transition: 0.2s ease-in-out;
+.card {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  background: white;
 }
 
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0px 10px 10px 5px var(--dark-shadow);
+}
+  
 .card {
   min-width: 344px;
   height: 386px;
@@ -25,19 +33,30 @@
   justify-content: right;
 }
 
+
 .saveBtn {
-  position: relative;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  background: rgba(0, 0, 0, 0.5);
   border: none;
   border-radius: 50%;
-  margin: 10px;
-  width: 36px;
-  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 2;
 }
 
-.saveBtn .icon {
+.saveBtn:hover {
+  background: rgba(0, 0, 0, 0.7);
+  transform: scale(1.1);
+}
+
+.icon {
   position: absolute;
   top: 0;
   left: 0;
@@ -46,8 +65,23 @@
   height: 30px;
 }
 
-.saveBtn .icon.hover {
+.icon.default {
+  opacity: 1;
+  fill: #ffffff;
+}
+
+.icon.hover {
+  position: absolute;
   opacity: 0;
+  fill: #FFD700;
+}
+
+.saveBtn.active .icon.default {
+  opacity: 0;
+}
+
+.saveBtn.active .icon.hover {
+  opacity: 1;
 }
 
 .wrapper {
@@ -64,7 +98,7 @@
 
 .infoContainer {
   display: flex;
-  gap: 0.75rem;
+  gap: 12px;
 }
 
 .dateContainer {
@@ -73,6 +107,13 @@
   align-items: center;
   font-family: var(--title-font);
   gap: 0.2rem;
+}
+
+.month {
+  font-size: 14px;
+  font-weight: bold;
+  color: #666;
+  text-transform: uppercase;
 }
 
 .dateContainer>.month {
@@ -113,22 +154,6 @@
   border: 3px solid var(--accent-button-color);
   align-self: flex-end;
   color: var(--button-text-color);
-}
-
-.card:hover {
-  box-shadow: 0px 10px 10px 5px var(--dark-shadow);
-}
-
-.saveBtn:hover {
-  background-color: transparent;
-}
-
-.saveBtn:hover .icon.default {
-  opacity: 0;
-}
-
-.saveBtn:hover .icon.hover {
-  opacity: 1;
 }
 
 .buttonLink:hover {

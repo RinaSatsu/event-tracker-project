@@ -1,0 +1,30 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .pageHeader {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .eventsGrid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(344px, 1fr));
+  }
+  
+  .emptyState {
+    text-align: center;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+  }
+  
+  .loadingSpinner {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+  }

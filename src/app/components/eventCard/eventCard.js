@@ -1,29 +1,53 @@
-'use client'
+'use client';
+import { useState, useEffect } from 'react';
 import Link from "next/link";
 import styles from "./eventCard.module.css";
 import StarIcon from "/public/star.svg";
 import StarFullIcon from "/public/star-full.svg";
+import { isFavorite, toggleFavorite } from '../../utils/favoritesService';
 
 const formatMonth = (month) => {
-  return month.trim().substring(0, 3).toUpperCase();
-}
-
-const handleSaveEvent = (event) => {
-  console.log(event);
-} 
+  return month?.trim()?.substring(0, 3)?.toUpperCase() || '';
+};
 
 export default function EventCard({ event }) {
+  const [favorite, setFavorite] = useState(false);
+
+  useEffect(() => {
+    setFavorite(isFavorite(event.id));
+    
+    const handleStorageChange = () => {
+      setFavorite(isFavorite(event.id));
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, [event.id]);
+
+  const handleSaveEvent = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleFavorite(event);
+  };
+
+  if (!event?.id) return null;
+
   return (
     <div className={styles.card}>
       <div className={styles.image}>
         <img src={event.image} alt={`Banner for ${event.name}`}/>
         <button 
-          className={styles.saveBtn}
-          onClick={handleSaveEvent}>
-          <StarIcon className={`${styles.icon} ${styles.default}`}/>
-          <StarFullIcon className={`${styles.icon} ${styles.hover}`}/>
+          className={`${styles.saveBtn} ${favorite ? styles.active : ''}`}
+          onClick={handleSaveEvent}
+          aria-label={favorite ? "Remove from favorites" : "Add to favorites"}
+         >
+          {favorite ? (
+            <StarFullIcon className={`${styles.icon} ${styles.hover}`} />
+          ) : (
+            <StarIcon className={`${styles.icon} ${styles.default}`} />
+          )}
         </button>
-    </div>
+      </div>
       <div className={styles.wrapper}>
         <div className={styles.contentContainer}>
           <div className={styles.infoContainer}>
@@ -46,4 +70,4 @@ export default function EventCard({ event }) {
       </div>
     </div>
   );
-}
+};
