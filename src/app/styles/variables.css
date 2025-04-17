@@ -25,8 +25,10 @@
   --secondary-800: #5d3a28;
 
   --tertiary-500: #f0c014;
+  --tertiary-600: #c09a10;
 
   --accent-500: #01baf1;
+  --accent-600: #15a1d1;
   --accent-700: #1f7698;
   --accent-800: #1e4e63;
   --accent-900: #00141b;
@@ -47,7 +49,7 @@
   --background: var(--white);
   --background-primary: var(--primary-500);
   --background-secondary: var(--secondary-500);
-  --backgroung-neutral: var(--gray-200);
+  --background-neutral: var(--gray-200);
   --link-hover: var(--accent-700);
   --subhero-color: var(--black-300);
   --actbtn-color: var(--secondary-500);
@@ -67,6 +69,10 @@
   --form-bright: var(--accent-900);
   --form-dull: var(--black-500);
   --error-color: #ed0000;
+  --cal-accent: var(--accent-500);
+  --cal-secondary: var(--secondary-500);
+  --cal-tertiary: var(--tertiary-500);
+  --cal-text-special: var(--primary-800);
 
   --hero-background: url("/light-unsplash.webp");
   --hero-shadow: rgba(0, 0, 0, 0.25);
@@ -80,7 +86,7 @@
   --background: var(--black-200);
   --background-primary: var(--primary-500);
   --background-secondary: var(--secondary-500);
-  --backgroung-neutral: var(--black-200);
+  --background-neutral: var(--black-200);
   --link-hover: var(--accent-700);
   --subhero-color: var(--black-300);
   --actbtn-color: var(--secondary-500);
@@ -100,6 +106,10 @@
   --form-bright: var(--white);
   --form-dull: var(--black-500);
   --error-color: #c94040;
+  --cal-accent: var(--accent-600);
+  --cal-secondary: var(--secondary-600);
+  --cal-tertiary: var(--tertiary-600);
+  --cal-text-special: var(--primary-200);
 
   --hero-background: url("/dark-unsplash.webp");
   --hero-shadow: rgba(217, 217, 217, 0.1);

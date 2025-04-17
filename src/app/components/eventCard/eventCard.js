@@ -7,8 +7,16 @@ import StarFullIcon from "/public/star-full.svg";
 import { isFavorite, toggleFavorite } from '../../utils/favoritesService';
 
 const formatMonth = (month) => {
-  return month?.trim()?.substring(0, 3)?.toUpperCase() || '';
-};
+  if (isNaN(month)) {
+  return month.trim().substring(0, 3).toUpperCase();
+  } else {
+    return new Date(month).toLocaleString('default', { month: 'short' }).toUpperCase();
+  }
+}
+
+const handleSaveEvent = (event) => {
+  console.log(event);
+} 
 
 export default function EventCard({ event }) {
   const [favorite, setFavorite] = useState(false);
@@ -34,8 +42,11 @@ export default function EventCard({ event }) {
 
   return (
     <div className={styles.card}>
-      <div className={styles.image}>
-        <img src={event.image} alt={`Banner for ${event.name}`}/>
+      <div
+        className={styles.image}
+        style={{
+          backgroundImage: `url(${event.image || '/event-placeholder.webp'})`,
+        }}>
         <button 
           className={`${styles.saveBtn} ${favorite ? styles.active : ''}`}
           onClick={handleSaveEvent}

@@ -3,8 +3,29 @@ import ThemeToggle from '@/app/components/themeToggle/themeToggle';
 import Link from 'next/link';
 import styles from "./navbar.module.css";
 import UserIcon from "/public/circle-user.svg";
+import { useEffect, useState } from 'react';
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
+  const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    const updateUsername = () => {
+      const storedUsername = localStorage.getItem('username');
+      setUsername(storedUsername || '');
+    };
+
+    updateUsername();
+
+    window.addEventListener('login', updateUsername);
+    window.addEventListener('logout', updateUsername);
+
+    return () => {
+      window.removeEventListener('login', updateUsername);
+      window.removeEventListener('logout', updateUsername);
+    };
+  }, []);
+
   return (
     <div className={styles.headerContainer}>
       <div className={styles.header}>
@@ -37,7 +58,7 @@ export default function Navbar() {
           <li>
             <Link
               className={styles.linkButton}
-              href="/login">
+              href={username ? '/userprofile' : '/login'}>
               <UserIcon />
             </Link>
           </li>

@@ -1,0 +1,62 @@
+.calendarPage {
+  position: relative;
+  top: -2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto 2rem auto;
+  padding: 1rem;
+  font-family: var(--main-font);
+}
+
+.calendarContainer {
+  padding: 1.5rem;
+  background: var(--card-bg-color);
+  border-radius: 30px;
+  box-shadow: 0px 10px 25px 5px var(--dark-shadow);
+  max-width: 600px;
+  align-self: center;
+}
+
+
+.concertMarker {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  height: 1rem;
+  width: 1rem;
+  fill: var(--cal-text-special);
+}
+
+.concertsList {
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  background: var(--card-bg-color);
+  border-radius: 1rem;
+  padding: 1.25rem 0;
+  box-shadow: 0px 10px 10px 5px var(--dark-shadow);
+  width: 100%;
+}
+
+.concertsList h2,
+.noEvents {
+  color: var(--cont-text-color);
+  padding: 0rem 1rem;
+}
+
+.noEvents {
+  color: var(--cont-subtext-color);
+}
+
+.eventContainer {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.eventContainer p {
+  padding: 0.625rem 1rem;
+}

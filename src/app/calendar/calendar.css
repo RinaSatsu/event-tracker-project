@@ -1,69 +1,83 @@
-.calendar-page {
-    max-width: 900px;
-    margin: 2rem auto;
-    padding: 1rem;
-    font-family: 'Segoe UI', system-ui, sans-serif;
-  }
-  
-  .calendar-container {
-    background: white;
-    border-radius: 10px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  }
-  
-  .react-calendar {
-    width: 100%;
-    border: none;
-  }
-  
-  .has-concert {
-    background: rgba(29, 185, 84, 0.2) !important; 
-    position: relative;
-  }
-  
-  .concert-marker {
-    position: absolute;
-    bottom: 3px;
-    right: 3px;
-    font-size: 12px;
-  }
-  
-  .concerts-list {
-    margin-top: 2rem;
-    background: #f8f9fa;
-    padding: 1.5rem;
-    border-radius: 8px;
-  }
-  
-  .concerts-list ul {
-    list-style: none;
-    padding: 0;
-    margin-top: 1rem;
-  }
-  
-  .concerts-list li {
-    padding: 0.75rem;
-    margin-bottom: 0.5rem;
-    background: white;
-    border-radius: 6px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  }
-  
-  .today-button {
-    display: block;
-    margin: 1.5rem auto 0;
-    padding: 0.75rem 1.5rem;
-    background: #1DB954; 
-    color: white;
-    border: none;
-    border-radius: 50px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  
-  .today-button:hover {
-    background: #1ed760;
-    transform: translateY(-1px);
-  }
+.react-calendar {
+  width: 100%;
+  border: none;
+  background-color: inherit;
+  font-family: inherit;
+}
+
+.react-calendar button:enabled:focus {
+  background-color: inherit;
+}
+
+.react-calendar button:enabled:hover {
+  background-color: var(--background-neutral);
+}
+
+.react-calendar__navigation {
+  height: initial;
+}
+
+.react-calendar__navigation button {
+  font-family: var(--title-font);
+  font-size: 1.6rem;
+  color: var(--cont-text-color);
+}
+
+.react-calendar__navigation__arrow {
+  padding: 0.4rem 0.5rem 0.6rem 0.5rem;
+}
+
+.react-calendar__navigation__label {
+  padding: 0.5rem;
+}
+
+.react-calendar__month-view abbr {
+  font-size: 0.9rem;
+  color: var(--cont-text-color);
+}
+
+.react-calendar__month-view__days__day--weekend abbr {
+  color: var(--background-primary);
+  font-weight: 600;
+}
+
+.react-calendar__tile--now {
+  background-color: var(--cal-tertiary);
+}
+
+.has-concert {
+  background: var(--cal-secondary);
+  position: relative;
+}
+
+.react-calendar__month-view__days__day--weekend.has-concert abbr,
+.react-calendar__month-view__days__day--weekend.react-calendar__tile--range abbr,
+.react-calendar__month-view__days__day--weekend.react-calendar__tile--now abbr {
+  color: var(--cal-text-special);
+}
+
+.react-calendar__tile--range {
+  background-color: var(--cal-accent) !important;
+}
+
+.react-calendar__month-view__days__day--neighboringMonth abbr {
+  color: var(--cont-subtext-color);
+}
+
+.today-button {
+  display: block;
+  margin: 1.5rem auto 0;
+  padding: 0.75rem 1.5rem;
+  background: #1DB954;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.today-button:hover {
+  background: #1ed760;
+  transform: translateY(-1px);
+}

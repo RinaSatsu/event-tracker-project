@@ -1,13 +1,27 @@
 'use client'
 import HeroSection from "@/app/components/heroSection/heroSection";
 import styles from "./page.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import UserCard from "../components/userCard/userCard";
 import ActionButton from "../components/actionButton/actionButton";
 
 export default function UserProfile() {
+  const [username, setUsername] = useState('');
   const [message, setMessage] = useState("");
   const [users, setUsers] = useState([]);
+  const router = useRouter();
+
+  useEffect(() => {
+    const username = localStorage.getItem('username');
+    setUsername(username);
+  }, []);
+
+  const handleLogout = async () => {
+    localStorage.removeItem('username');
+    window.dispatchEvent(new Event('logout'));
+    router.push("/login");
+  }
 
   const handleFetchUsers = async () => {
     setMessage("Loading...");
@@ -33,7 +47,12 @@ export default function UserProfile() {
     <div>
       <HeroSection className={styles.small}></HeroSection>
       <main className={styles.main}>
-        <h2 className={styles.greeting}>Hello, <span>User</span>!</h2>
+        <h2 className={styles.greeting}>Hello, <span>{username}</span>!</h2>
+        <button
+          onClick={handleLogout}
+          className={styles.logoutBtn}>
+          Log out
+        </button>
         <ActionButton
           className={styles.btn}
           clickHandler={handleFetchUsers}>

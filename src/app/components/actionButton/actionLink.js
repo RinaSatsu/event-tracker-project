@@ -2,9 +2,10 @@ import React from "react";
 import styles from "./actionButton.module.css";
 import "./actionButton.module.css";
 
-export default function ActionLink({ className, toId, children }) {
+export default function ActionLink({ className, toId, children, ...props }) {
   return (
-    <a href={toId}
+    <a {...props}
+      href={toId}
       className={`${className} ${styles.button} button-link`}>
       <span className={styles.buttonBg}>
         <span className={styles.buttonBgLayers}>

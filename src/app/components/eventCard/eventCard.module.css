@@ -20,12 +20,15 @@
   box-shadow: 0px 19px 47px var(--light-shadow);
 }
 
+.card:hover {
+  box-shadow: 0px 10px 10px 5px var(--dark-shadow);
+}
+
 .image {
   width: 100%;
   height: 58%;
   border-top-left-radius: 1.875rem;
   border-top-right-radius: 1.875rem;
-  background-image: url("/event-placeholder.webp");
   background-size: cover;
   background-position: center;
   display: flex;
@@ -33,6 +36,18 @@
   justify-content: right;
 }
 
+.saveBtn::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  bottom: -3px;
+  left: -3px;
+  background: var(--card-bg-color);
+  opacity: 0.4;
+  border-radius: 50%;
+  z-index: 1;
+}
 
 .saveBtn {
   position: absolute;
@@ -52,17 +67,22 @@
 }
 
 .saveBtn:hover {
+  background-color: transparent;
+}
+
+.saveBtn .icon {
   background: rgba(0, 0, 0, 0.7);
   transform: scale(1.1);
 }
 
 .icon {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 2px;
+  left: 3;
   fill: var(--background-primary);
   width: 30px;
   height: 30px;
+  z-index: 2;
 }
 
 .icon.default {
@@ -80,6 +100,12 @@
   opacity: 0;
 }
 
+.saveBtn:hover .icon.default {
+  opacity: 0;
+}
+
+.saveBtn:hover .icon.hover,
+.icon.selected {
 .saveBtn.active .icon.hover {
   opacity: 1;
 }
@@ -142,6 +168,8 @@
   font-size: 1.25rem;
   font-family: var(--event-title);
   color: var(--cont-text-color);
+  max-height: 3rem;
+  overflow-y: hidden;
 }
 
 .info>.address {

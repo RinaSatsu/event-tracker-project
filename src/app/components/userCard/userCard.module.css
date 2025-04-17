@@ -33,5 +33,13 @@
 }
 
 .user:hover {
-  background-color: var(--backgroung-neutral);
+  background-color: var(--background-neutral);
+}
+
+.buttonLink {
+  width: 130px;
+}
+
+.buttonLink:hover {
+  cursor: pointer;
 }

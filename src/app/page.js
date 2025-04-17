@@ -11,19 +11,31 @@ import fetchEvents from "../lib/fetchEvents";
 export default function Home() {
   const [allevents, setAllEvents] = useState([]);
   const [visibleCount, setVisibleCount] = useState(6);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     const getEvents = async () => {
-      const data = await fetchEvents();
-      setAllEvents(data);
+      try {
+        const data = await fetchEvents();
+        if (!data || data.length === 0) {
+          setMessage("No events found at the moment. Check back later");
+        } else {
+          setMessage(null);
+        }
+        setAllEvents(data);
+      } catch (err) {
+        console.error(err);
+        setMessage("An error occurred while fetching events");
+      }
     };
 
     getEvents();
   }, []);
 
-  const handleViewAll = () => {
+  const handleViewMore = () => {
     setVisibleCount(prevCount => prevCount + 9);
   };
+
 
   return (
     <div className={styles.page}>
@@ -40,13 +52,18 @@ export default function Home() {
           Discover
         </ActionLink>
       </section>
-      <CardContainer
-        visible={visibleCount < allevents.length}
-        onClick={handleViewAll}>
-        {allevents.slice(0, visibleCount).map((event) => (
-            <EventCard key={event.id}event={event} />
-        ))}
-      </CardContainer>
+      <div>
+        {message && <p className={styles.message}>{message}</p>}
+        <CardContainer
+          visible={visibleCount < allevents.length}
+          onClick={handleViewMore}>
+          {allevents && allevents.slice(0, visibleCount).map((event) => (
+            <li key={event.id}>
+              <EventCard event={event} />
+            </li>
+          ))}
+        </CardContainer>
+      </div>
       <ToTopButton />
     </div>
   );

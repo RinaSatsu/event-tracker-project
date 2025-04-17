@@ -43,6 +43,8 @@ export default function LoginPage() {
         const data = await res.json();
         if (res.ok) {
           setMessage("Login successful. Redirecting...");
+          localStorage.setItem('username', data.user.username);
+          window.dispatchEvent(new Event('login'));
           setTimeout(() => {
             router.push("/userprofile");
           }, 1000);

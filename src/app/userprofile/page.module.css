@@ -1,5 +1,5 @@
 .small {
-  height: 200px !important;
+  height: 22vh !important;
 }
 
 .main {
@@ -19,6 +19,12 @@
 
 .greeting span {
   color: var(--background-primary);
+}
+
+.logoutBtn {
+  align-self: center;
+  padding-right: 1rem;
+  padding-left: 1rem;
 }
 
 .btn {
