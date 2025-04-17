@@ -1,11 +1,30 @@
+'use client'
+import { useEffect, useState } from "react";
 import styles from "@/app/styles/page.module.css";
 import EventCard from "./components/eventCard/eventCard";
 import ActionLink from "./components/actionButton/actionLink";
 import ToTopButton from "./components/toTopButton/toTopButton";
 import CardContainer from "./components/cardContainer/cardContainer";
 import eventData from "/public/events.json";
+import fetchEvents from "../lib/fetchEvents";
 
 export default function Home() {
+  const [allevents, setAllEvents] = useState([]);
+  const [visibleCount, setVisibleCount] = useState(6);
+
+  useEffect(() => {
+    const getEvents = async () => {
+      const data = await fetchEvents();
+      setAllEvents(data);
+    };
+
+    getEvents();
+  }, []);
+
+  const handleViewAll = () => {
+    setVisibleCount(prevCount => prevCount + 9);
+  };
+
   return (
     <div className={styles.page}>
       <section className={styles.heroSection}>
@@ -21,11 +40,11 @@ export default function Home() {
           Discover
         </ActionLink>
       </section>
-      <CardContainer>
-        {eventData.map((event) => (
-          <li key={event.id}>
-            <EventCard event={event} />
-          </li>
+      <CardContainer
+        visible={visibleCount < allevents.length}
+        onClick={handleViewAll}>
+        {allevents.slice(0, visibleCount).map((event) => (
+            <EventCard key={event.id}event={event} />
         ))}
       </CardContainer>
       <ToTopButton />

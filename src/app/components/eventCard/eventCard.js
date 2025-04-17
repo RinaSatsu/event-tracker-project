@@ -10,7 +10,7 @@ const formatMonth = (month) => {
   return month?.trim()?.substring(0, 3)?.toUpperCase() || '';
 };
 
-const EventCard = ({ event }) => {
+export default function EventCard({ event }) {
   const [favorite, setFavorite] = useState(false);
 
   useEffect(() => {
@@ -34,17 +34,20 @@ const EventCard = ({ event }) => {
 
   return (
     <div className={styles.card}>
-      <button 
-        className={`${styles.saveBtn} ${favorite ? styles.active : ''}`}
-        onClick={handleSaveEvent}
-        aria-label={favorite ? "Remove from favorites" : "Add to favorites"}
-      >
-        {favorite ? (
-          <StarFullIcon className={`${styles.icon} ${styles.hover}`} />
-        ) : (
-          <StarIcon className={`${styles.icon} ${styles.default}`} />
-        )}
-      </button>
+      <div className={styles.image}>
+        <img src={event.image} alt={`Banner for ${event.name}`}/>
+        <button 
+          className={`${styles.saveBtn} ${favorite ? styles.active : ''}`}
+          onClick={handleSaveEvent}
+          aria-label={favorite ? "Remove from favorites" : "Add to favorites"}
+         >
+          {favorite ? (
+            <StarFullIcon className={`${styles.icon} ${styles.hover}`} />
+          ) : (
+            <StarIcon className={`${styles.icon} ${styles.default}`} />
+          )}
+        </button>
+      </div>
       <div className={styles.wrapper}>
         <div className={styles.contentContainer}>
           <div className={styles.infoContainer}>
@@ -59,9 +62,8 @@ const EventCard = ({ event }) => {
             </div>
           </div>
           <Link
-            className={styles.buttonLink}
-            href={`/event/${encodeURIComponent(event.link)}`}
-          >
+            className={`${styles.buttonLink} button-link`}
+            href={`/event/${event.id}?name=${encodeURIComponent(event.name)}`}>
             See More
           </Link>
         </div>
@@ -69,5 +71,3 @@ const EventCard = ({ event }) => {
     </div>
   );
 };
-
-export default EventCard;

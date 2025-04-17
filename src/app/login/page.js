@@ -4,6 +4,7 @@ import { useState } from "react";
 import HeroSection from "@/app/components/heroSection/heroSection";
 import InputField from "@/app/components/inputField/inputField";
 import styles from "./page.module.css";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const [values, setValues] = useState({
@@ -13,6 +14,7 @@ export default function LoginPage() {
 
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState("");
+  const router = useRouter();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,9 +30,30 @@ export default function LoginPage() {
     if (!values.password) errs.password = "Password is required.";
 
     setErrors(errs);
-    
+
     if (Object.keys(errs).length === 0) {
-      setMessage("Signing in...", values);
+      const { email, password } = values;
+      try {
+        const res = await fetch("/api/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          setMessage("Login successful. Redirecting...");
+          setTimeout(() => {
+            router.push("/userprofile");
+          }, 1000);
+        } else {
+          setMessage(data.error || "Failed to login.");
+          console.warn("Login error:", data);
+        }
+      } catch (error) {
+        console.error("Error logging in: ", error);
+        setMessage("An unexpected error occurred.");
+      }
     } else {
       setMessage("");
     }
