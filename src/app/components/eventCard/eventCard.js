@@ -1,8 +1,10 @@
-'use client'
+'use client';
+import { useState, useEffect } from 'react';
 import Link from "next/link";
 import styles from "./eventCard.module.css";
 import StarIcon from "/public/star.svg";
 import StarFullIcon from "/public/star-full.svg";
+import { isFavorite, toggleFavorite } from '../../utils/favoritesService';
 
 const formatMonth = (month) => {
   if (isNaN(month)) {
@@ -17,6 +19,27 @@ const handleSaveEvent = (event) => {
 } 
 
 export default function EventCard({ event }) {
+  const [favorite, setFavorite] = useState(false);
+
+  useEffect(() => {
+    setFavorite(isFavorite(event.id));
+    
+    const handleStorageChange = () => {
+      setFavorite(isFavorite(event.id));
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, [event.id]);
+
+  const handleSaveEvent = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleFavorite(event);
+  };
+
+  if (!event?.id) return null;
+
   return (
     <div className={styles.card}>
       <div
@@ -24,11 +47,16 @@ export default function EventCard({ event }) {
         style={{
           backgroundImage: `url(${event.image || '/event-placeholder.webp'})`,
         }}>
-        <button
-          className={styles.saveBtn}
-          onClick={handleSaveEvent}>
-          <StarIcon className={`${styles.icon} ${styles.default}`} />
-          <StarFullIcon className={`${styles.icon} ${styles.hover}`} />
+        <button 
+          className={`${styles.saveBtn} ${favorite ? styles.active : ''}`}
+          onClick={handleSaveEvent}
+          aria-label={favorite ? "Remove from favorites" : "Add to favorites"}
+         >
+          {favorite ? (
+            <StarFullIcon className={`${styles.icon} ${styles.hover}`} />
+          ) : (
+            <StarIcon className={`${styles.icon} ${styles.default}`} />
+          )}
         </button>
       </div>
       <div className={styles.wrapper}>
@@ -53,4 +81,4 @@ export default function EventCard({ event }) {
       </div>
     </div>
   );
-}
+};

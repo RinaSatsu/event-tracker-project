@@ -44,7 +44,7 @@ export default function Navbar() {
             </Link></li>
             <li><Link
               className={styles.link}
-              href="/favevents">
+              href="/eventlist">
               List
             </Link></li>
             <li><Link
