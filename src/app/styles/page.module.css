@@ -51,3 +51,9 @@
   left: calc(50vw - 115px);
   width: 210px;
 }
+
+.message {
+  font-size: 2rem;
+  text-align: center;
+  color: var(--cont-text-color);
+}

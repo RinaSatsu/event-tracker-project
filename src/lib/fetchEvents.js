@@ -1,29 +1,22 @@
-function sortByDateAsc(a, b) {
-    const year = a.date.year;
-    const dateA = new Date(
-        year,
-        a.date.month - 1,
-        a.date.day,
-        ...a.date.time.split(":").map(Number)
-    );
-    const dateB = new Date(
-        year,
-        b.date.month - 1,
-        b.date.day,
-        ...b.date.time.split(":").map(Number)
-    );
-    return dateA - dateB;
-};
+const filterDistinct = (events) => {
+    const seen = new Set();
+    return events.filter(event => {
+      const name = event.name?.toLowerCase();
+      if (seen.has(name)) return false;
+      seen.add(name);
+      return true;
+    });
+  };
 
-export default async function fetchEvents({ keyword = '', dmaId = '505', date = '' } = {}) {
+export default async function fetchEvents({ keyword = '', dmaId = '500', date = '' } = {}) {
     const apiKey = 'BW7AXlRXKWgiAYSkY71zNBIAgFqUMuCn';
     const targetWidth = 600;
-    let query = `?apikey=${apiKey}&countryCode=CA&locale=en-CA`;
+    let query = `?apikey=${apiKey}&countryCode=CA&locale=en-CA&sort=date,name,asc&size=60`;
 
     if (keyword) query += `&keyword=${encodeURIComponent(keyword)}`;
     if (dmaId) query += `&dmaId=${encodeURIComponent(dmaId)}`;
     if (date) {
-        const isoDate = new Date(date).toISOString();
+        const isoDate = new Date(`${date}T00:00:00Z`).toISOString().split('.')[0] + 'Z';
         query += `&startDateTime=${encodeURIComponent(isoDate)}`;
     }
     try {
@@ -34,20 +27,21 @@ export default async function fetchEvents({ keyword = '', dmaId = '505', date = 
         const data = await response.json();
 
         if (data._embedded?.events) {
-            return data._embedded.events.map((e) => ({
+            const distinctEvents = filterDistinct(data._embedded?.events);
+            return distinctEvents.map((e) => ({
                 id: e.id,
                 name: e.name,
                 date: {
-                    year: new Date(e.dates.start.dateTime).toLocaleString('default', { year: 'numeric' }),
-                    month: new Date(e.dates.start.dateTime).toLocaleString('default', { month: 'numeric' }),
-                    day: new Date(e.dates.start.dateTime).getDate(),
-                    time: new Date(e.dates.start.dateTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false }),
+                    year: new Date(e.dates.start.dateTime || e.dates.start.localDate).toLocaleString('default', { year: 'numeric' }), //localDate
+                    month: new Date(e.dates.start.dateTime || e.dates.start.localDate).toLocaleString('default', { month: 'numeric' }),
+                    day: new Date(e.dates.start.dateTime || e.dates.start.localDate).getDate(),
+                    time: (e.dates.start.dateTime ? new Date(e.dates.start.dateTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false }) : null),
                 },
                 address: e._embedded.venues?.[0]?.name || 'Unknown venue',
                 image: e.images?.reduce((prev, curr) =>
                     Math.abs(curr.width - targetWidth) < Math.abs(prev.width - targetWidth) ? curr : prev
                 )?.url || null,
-            })).sort(sortByDateAsc);
+            }));
         }
 
         return [];

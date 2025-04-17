@@ -60,7 +60,7 @@ export default function EventDetailPage() {
         setStatusMessage('');
       } catch (error) {
         console.error('Error fetching event details:', error);
-        setStatusMessage('An error occurred while fetching event details.');
+        setStatusMessage('An error occurred while fetching event details');
       }
     };
 
@@ -80,13 +80,13 @@ export default function EventDetailPage() {
       </HeroSection>
 
       <main className={styles.eventPage}>
-        {statusMessage && <p>{statusMessage}</p>}
+      {statusMessage && <p className={styles.message}>{statusMessage}</p>}
         {eventData ? (
           <div className={styles.eventContainer}>
             {eventData.images && eventData.images.length > 0 && (
               <img
                 src={eventImg.url}
-                alt={`Banner for ${eventData.name}`}
+                alt={`banner for ${eventData.name}`}
               />
             )}
             <div className={styles.eventInfo}>

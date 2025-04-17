@@ -15,8 +15,8 @@ export default function DateInput({ icon: Icon, label, ...props }) {
   const id = toCamelCaseId(label);
 
   const handleChange = (e) => {
-    setHasValue(!!e.target.value)
-    props.onChange?.(e)
+    setHasValue(!!e.target.value);
+    props.onChange?.(e);
   }
 
   return (
@@ -26,9 +26,10 @@ export default function DateInput({ icon: Icon, label, ...props }) {
         <input
           id={id}
           type="date"
+          {...props} 
           onChange={handleChange}
           data-filled={hasValue}
-          {...props} />
+          />
         <ArrowDown className={styles.iconOverlay} />
         <label htmlFor={id} className={styles.label}>{label}</label>
         <div className={styles.underline}></div>

@@ -11,3 +11,9 @@
   justify-content: center;
   align-items: center;
 }
+
+.message {
+  font-size: 2rem;
+  text-align: center;
+  color: var(--cont-text-color);
+}
