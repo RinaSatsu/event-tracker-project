@@ -23,6 +23,8 @@ function formatDate(date) {
 
 
 function formatTime(date) {
+  if (!date) 
+    return "No time available"
   const datef = new Date(date);
 
   return new Intl.DateTimeFormat('en-US', {
@@ -95,7 +97,7 @@ export default function EventDetailPage() {
                   <CalendarIcon />
                   <div>
                     <p className={styles.dataTitle}>Date:</p>
-                    <p>{formatDate(eventData.dates.start.dateTime)}</p>
+                    <p>{formatDate(eventData.dates.start.dateTime || eventData.dates.start.localDate)}</p>
                   </div>
                 </div>
                 <div className={styles.dataContent}>

@@ -16,7 +16,7 @@ export default function EventListCard({ id, name, time, venue }) {
         </div>
         <Link
             className={`${styles.buttonLink} button-link`}
-            href={`/event/${encodeURIComponent(id)}`}>
+            href={`/event/${id}?name=${encodeURIComponent(name)}`}>
             See More
           </Link>
       </div>

@@ -32,7 +32,7 @@ export default async function fetchEvents({ keyword = '', dmaId = '500', date = 
                 id: e.id,
                 name: e.name,
                 date: {
-                    year: new Date(e.dates.start.dateTime || e.dates.start.localDate).toLocaleString('default', { year: 'numeric' }), //localDate
+                    year: new Date(e.dates.start.dateTime || e.dates.start.localDate).toLocaleString('default', { year: 'numeric' }),
                     month: new Date(e.dates.start.dateTime || e.dates.start.localDate).toLocaleString('default', { month: 'numeric' }),
                     day: new Date(e.dates.start.dateTime || e.dates.start.localDate).getDate(),
                     time: (e.dates.start.dateTime ? new Date(e.dates.start.dateTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false }) : null),

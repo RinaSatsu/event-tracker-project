@@ -32,7 +32,7 @@ export default function SearchPage() {
     setVisibleCount(6);
     const dmaId = getDmaIdFromCity(eventLocation);
 
-    if (!dmaId) {
+    if (eventLocation.trim() && !dmaId) {
       setAllevents([]);
       setMessage('No events match your search criteria');
       return;

@@ -5,7 +5,6 @@ import EventCard from "./components/eventCard/eventCard";
 import ActionLink from "./components/actionButton/actionLink";
 import ToTopButton from "./components/toTopButton/toTopButton";
 import CardContainer from "./components/cardContainer/cardContainer";
-import eventData from "/public/events.json";
 import fetchEvents from "../lib/fetchEvents";
 
 export default function Home() {

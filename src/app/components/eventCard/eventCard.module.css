@@ -105,7 +105,7 @@
 }
 
 .saveBtn:hover .icon.hover,
-.icon.selected {
+.icon.selected,
 .saveBtn.active .icon.hover {
   opacity: 1;
 }

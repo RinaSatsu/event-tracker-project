@@ -6,8 +6,21 @@ import 'react-calendar/dist/Calendar.css';
 import HeroSection from "@/app/components/heroSection/heroSection";
 import StarIcon from "/public/star.svg";
 import EventListCard from "../components/userCard/eventListCard";
+import { getFavorites } from '../utils/favoritesService';
 import styles from "./page.module.css";
 import './calendar.css';
+
+function isEventOnDate(event, targetDate) {
+  if (!event?.date || !targetDate) return false;
+
+  const eventDate = new Date(
+    event.date.year,
+    event.date.month - 1,
+    event.date.day
+  );
+
+  return isSameDay(eventDate, targetDate);
+};
 
 const concerts = [
   { id: 1, name: "Green Day", date: new Date(2025, 5, 15), venue: "Rogers Centre" },
@@ -23,74 +36,34 @@ const concerts = [
   { id: 11, name: "Green Day 2", date: new Date(2025, 5, 15), venue: "Rogers Centre" }
 ]; //months in javascript are from 0-11, which is why it's showing the 5th month as June and not May.. weird! 
 
-const getMonthNumber = (monthAbbr) => {
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
-                 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  return months.indexOf(monthAbbr);
-};
-
-const getTimeParts = (timeString) => {
-  if (!timeString) return [0, 0];
-  const [hours, minutes] = timeString.split(':').map(Number);
-  return [hours, minutes];
-};
-
 export default function ConcertCalendarPage() {
   const [date, setDate] = useState(new Date());
-  const [events, setEvents] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
     const loadData = async () => {
       try {
-        const response = await fetch('/events.json');
-        if (!response.ok) throw new Error('Failed to load events');
-        
-        const eventsData = await response.json();
-        const transformedEvents = eventsData.map(event => ({
-          ...event,
-          parsedDate: new Date(
-            new Date().getFullYear(),
-            getMonthNumber(event.date.month),
-            parseInt(event.date.day),
-            ...getTimeParts(event.date.time)
-          )
-        }));
-
-        setEvents(transformedEvents);
+        setFavorites(getFavorites());
       } catch (error) {
         console.error('Error:', error);
-      } finally {
-        setIsLoading(false);
       }
     };
 
     loadData();
+
+    const handleStorageChange = () => {
+      setFavorites(getFavorites());
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
   }, []);
 
-  const todaysEvents = events
-    .filter(event => isSameDay(event.parsedDate, date))
-    .map(event => ({
-      ...event,
-      date: {
-        month: format(event.parsedDate, 'MMM'),
-        day: event.parsedDate.getDate(),
-        time: format(event.parsedDate, 'HH:mm')
-      }
-    }));
-
-  if (isLoading) {
-    return (
-      <div>
-        <HeroSection title="Event Calendar" />
-        <p>Loading events...</p>
-      </div>
-    );
-  }
+  const todaysEvents = favorites
+    .filter(event => isEventOnDate(event, date));
 
   return (
     <div>
-
       <HeroSection
         title="Plan with Calendar">
       </HeroSection>
@@ -101,47 +74,37 @@ export default function ConcertCalendarPage() {
             value={date}
 
             tileContent={({ date, view }) =>
-              view === 'month' && concerts.some(show => isSameDay(show.date, date)) ? (
+              view === 'month' && favorites.some(event => isEventOnDate(event, date)) ? (
                 <StarIcon className={styles.concertMarker} />
               ) : null
             }
             tileClassName={({ date, view }) =>
-              view === 'month' && concerts.some(show => isSameDay(show.date, date))
+              view === 'month' && favorites.some(event => isEventOnDate(event, date))
                 ? 'has-concert'
                 : ''
             }
           />
- //           tileContent={({ date, view }) => {
- //             if (view === 'month') {
- //               const hasEvent = events.some(event => 
- //                 isSameDay(event.parsedDate, date)
- //               );
- //               return hasEvent ? <div className="event-marker">•</div> : null;
- //             }
- //             return null;
- //           }}
- //         />
         </div>
 
         <div className={styles.concertsList}>
           <h2>Events on {format(date, 'MMMM d, yyyy')}</h2>
           {todaysEvents.length > 0 ? (
             <ul className={styles.eventContainer}>
-              {todaysConcerts.map(show => (
-                <li key={show.id}>
+              {todaysEvents.map(event => (
+                <li key={event.id}>
                   <EventListCard
-                  name={show.name} 
-                  time={show.time}
-                  venue={show.venue} />
+                    id={event.id}
+                    name={event.name}
+                    time={event.date.time}
+                    venue={event.address} />
                 </li>
               ))}
             </ul>
           ) : (
             <p className={styles.noEvents}>No events scheduled for this date</p>
-        </div>
           )}
         </div>
-      </main>
-    </div>
+      </main >
+    </div >
   );
 }
