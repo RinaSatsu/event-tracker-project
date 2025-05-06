@@ -1,10 +1,9 @@
 'use client'
-import ThemeToggle from '@/app/components/themeToggle/themeToggle';
+import ThemeToggle from '@/components/themeToggle/themeToggle';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import styles from "./navbar.module.css";
 import UserIcon from "/public/circle-user.svg";
-import { useEffect, useState } from 'react';
-import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [username, setUsername] = useState('');

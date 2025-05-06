@@ -1,12 +1,12 @@
-import React from "react";
-import styles from "./actionButton.module.css";
 import "./actionButton.module.css";
+import styles from "./actionButton.module.css";
 
-export default function ActionLink({ className, toId, children, ...props }) {
+export default function ActionButton({ className, style, clickHandler, children }) {
   return (
-    <a {...props}
-      href={toId}
-      className={`${className} ${styles.button} button-link`}>
+    <button
+      className={`${className} ${styles.button} `}
+      style={style}
+      onClick={clickHandler}>
       <span className={styles.buttonBg}>
         <span className={styles.buttonBgLayers}>
           <span className={`${styles.buttonBgLayer} ${styles.buttonBgLayer1}`}></span>
@@ -18,6 +18,6 @@ export default function ActionLink({ className, toId, children, ...props }) {
         <span className={styles.buttonInnerDefault}>{children}</span>
         <span className={styles.buttonInnerHover}>{children}</span>
       </span>
-    </a>
+    </button>
   );
 }

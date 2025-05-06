@@ -1,6 +1,6 @@
-import { NextResponse } from "next/server";
 import { PrismaClient } from "@/generated/prisma";
 import crypto from "crypto";
+import { NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 

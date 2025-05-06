@@ -1,4 +1,4 @@
-import ActionButton from "@/app/components/actionButton/actionButton";
+import ActionButton from "@/components/actionButton/actionButton";
 import styles from "./cardContainer.module.css";
 
 export default function CardContainer({ visible, onClick, children }) {
@@ -16,7 +16,7 @@ export default function CardContainer({ visible, onClick, children }) {
           View More
         </ActionButton>) :
         <div style={{ height: '52px' }}></div>
-        }
+      }
     </main>
   );
 }

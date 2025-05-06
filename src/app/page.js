@@ -1,11 +1,11 @@
 'use client'
-import { useEffect, useState } from "react";
 import styles from "@/app/styles/page.module.css";
-import EventCard from "./components/eventCard/eventCard";
-import ActionLink from "./components/actionButton/actionLink";
-import ToTopButton from "./components/toTopButton/toTopButton";
-import CardContainer from "./components/cardContainer/cardContainer";
-import fetchEvents from "../lib/fetchEvents";
+import { useEffect, useState } from "react";
+import fetchEvents from "@/lib/fetchEvents";
+import ActionLink from "@/components/actionButton/actionLink";
+import CardContainer from "@/components/cardContainer/cardContainer";
+import EventCard from "@/components/eventCard/eventCard";
+import ToTopButton from "@/components/toTopButton/toTopButton";
 
 export default function Home() {
   const [allevents, setAllEvents] = useState([]);

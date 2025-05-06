@@ -1,10 +1,10 @@
 'use client'
+import HeroSection from "@/components/heroSection/heroSection";
+import InputField from "@/components/inputField/inputField";
 import Link from "next/link";
-import { useState } from "react";
-import HeroSection from "@/app/components/heroSection/heroSection";
-import InputField from "@/app/components/inputField/inputField";
-import styles from "./page.module.css";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import styles from "./page.module.css";
 
 export default function LoginPage() {
   const [values, setValues] = useState({

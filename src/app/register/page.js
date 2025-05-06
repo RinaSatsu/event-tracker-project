@@ -1,10 +1,10 @@
 'use client'
-import { useState } from "react";
-import HeroSection from "../components/heroSection/heroSection";
-import InputField from "../components/inputField/inputField";
-import styles from "./page.module.css";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import HeroSection from "@/components/heroSection/heroSection";
+import InputField from "@/components/inputField/inputField";
+import styles from "./page.module.css";
 
 function validateForm(values) {
   const { username, email, password, confirmPassword } = values;

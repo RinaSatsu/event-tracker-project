@@ -1,24 +1,24 @@
 'use client';
-import { useState, useEffect } from 'react';
-import HeroSection from "../components/heroSection/heroSection";
-import EventCard from "../components/eventCard/eventCard";
-import { getFavorites } from '../utils/favoritesService';
+import { useEffect, useState } from 'react';
+import { getFavorites } from '@/lib/favoritesService';
+import CardContainer from '@/components/cardContainer/cardContainer';
+import EventCard from "@/components/eventCard/eventCard";
+import HeroSection from "@/components/heroSection/heroSection";
 import styles from "./page.module.css";
-import CardContainer from '../components/cardContainer/cardContainer';
 
 function sortByDateAsc(a, b) {
   const year = a.date.year;
   const dateA = new Date(
-      year,
-      a.date.month - 1,
-      a.date.day,
-      ...a.date.time.split(":").map(Number)
+    year,
+    a.date.month - 1,
+    a.date.day,
+    ...a.date.time.split(":").map(Number)
   );
   const dateB = new Date(
-      year,
-      b.date.month - 1,
-      b.date.day,
-      ...b.date.time.split(":").map(Number)
+    year,
+    b.date.month - 1,
+    b.date.day,
+    ...b.date.time.split(":").map(Number)
   );
   return dateA - dateB;
 };

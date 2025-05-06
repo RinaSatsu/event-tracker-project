@@ -1,15 +1,15 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import ActionLink from '@/components/actionButton/actionLink';
+import BackButton from '@/components/backButton';
+import FavoriteButton from '@/components/favoriteButton/favoriteButton';
+import HeroSection from '@/components/heroSection/heroSection';
 import { useParams, useSearchParams } from 'next/navigation';
-import BackButton from '@/app/components/backButton';
-import HeroSection from '@/app/components/heroSection/heroSection';
+import { useEffect, useState } from 'react';
 import styles from "./page.module.css";
 import CalendarIcon from "/public/calendar-clock.svg";
 import ClockIcon from "/public/clock-regular.svg";
 import MapIcon from "/public/map-marker.svg";
-import ActionLink from '@/app/components/actionButton/actionLink';
-import FavoriteButton from '@/app/components/favoriteButton/favoriteButton';
 
 
 function formatDate(date) {
@@ -49,7 +49,7 @@ export default function EventDetailPage() {
   useEffect(() => {
     const fetchEventById = async () => {
       try {
-        const apiKey = 'BW7AXlRXKWgiAYSkY71zNBIAgFqUMuCn';
+        const apiKey = process.env.NEXT_PUBLIC_API_KEY;
         const response = await fetch(
           `https://app.ticketmaster.com/discovery/v2/events/${eventId}.json?apikey=${apiKey}&countryCode=CA&locale=en-CA`
         );
@@ -133,7 +133,7 @@ export default function EventDetailPage() {
                       address: eventData._embedded.venues?.[0]?.name || 'Unknown venue',
                       image: eventData.images?.reduce((prev, curr) =>
                         Math.abs(curr.width - 600) < Math.abs(prev.width - 600) ? curr : prev
-                    )?.url || null
+                      )?.url || null
                     }}
                   />
                 </div>

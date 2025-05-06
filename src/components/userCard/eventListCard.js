@@ -1,5 +1,5 @@
-import styles from "./userCard.module.css";
 import Link from "next/link";
+import styles from "./userCard.module.css";
 
 export default function EventListCard({ id, name, time, venue }) {
   return (
@@ -15,10 +15,10 @@ export default function EventListCard({ id, name, time, venue }) {
           <p className={styles.email}>{time} - {venue}</p>
         </div>
         <Link
-            className={`${styles.buttonLink} button-link`}
-            href={`/event/${id}?name=${encodeURIComponent(name)}`}>
-            See More
-          </Link>
+          className={`${styles.buttonLink} button-link`}
+          href={`/event/${id}?name=${encodeURIComponent(name)}`}>
+          See More
+        </Link>
       </div>
     </div>
   );

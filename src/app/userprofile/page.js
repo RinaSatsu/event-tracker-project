@@ -1,10 +1,10 @@
 'use client'
-import HeroSection from "@/app/components/heroSection/heroSection";
-import styles from "./page.module.css";
-import { useState, useEffect } from "react";
+import HeroSection from "@/components/heroSection/heroSection";
 import { useRouter } from "next/navigation";
-import UserCard from "../components/userCard/userCard";
-import ActionButton from "../components/actionButton/actionButton";
+import { useEffect, useState } from "react";
+import ActionButton from "@/components/actionButton/actionButton";
+import UserCard from "@/components/userCard/userCard";
+import styles from "./page.module.css";
 
 export default function UserProfile() {
   const [username, setUsername] = useState('');

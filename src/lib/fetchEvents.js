@@ -9,7 +9,7 @@ const filterDistinct = (events) => {
   };
 
 export default async function fetchEvents({ keyword = '', dmaId = '500', date = '' } = {}) {
-    const apiKey = 'BW7AXlRXKWgiAYSkY71zNBIAgFqUMuCn';
+    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
     const targetWidth = 600;
     let query = `?apikey=${apiKey}&countryCode=CA&locale=en-CA&sort=date,name,asc&size=60`;
 

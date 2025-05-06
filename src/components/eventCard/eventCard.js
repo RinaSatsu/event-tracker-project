@@ -1,14 +1,14 @@
 'use client';
-import { useState, useEffect } from 'react';
 import Link from "next/link";
+import { useEffect, useState } from 'react';
+import { isFavorite, toggleFavorite } from '@/lib/favoritesService';
 import styles from "./eventCard.module.css";
-import StarIcon from "/public/star.svg";
 import StarFullIcon from "/public/star-full.svg";
-import { isFavorite, toggleFavorite } from '../../utils/favoritesService';
+import StarIcon from "/public/star.svg";
 
 const formatMonth = (month) => {
   if (isNaN(month)) {
-  return month.trim().substring(0, 3).toUpperCase();
+    return month.trim().substring(0, 3).toUpperCase();
   } else {
     return new Date(month).toLocaleString('default', { month: 'short' }).toUpperCase();
   }
@@ -19,7 +19,7 @@ export default function EventCard({ event }) {
 
   useEffect(() => {
     setFavorite(isFavorite(event.id));
-    
+
     const handleStorageChange = () => {
       setFavorite(isFavorite(event.id));
     };
@@ -43,11 +43,11 @@ export default function EventCard({ event }) {
         style={{
           backgroundImage: `url(${event.image || '/event-placeholder.webp'})`,
         }}>
-        <button 
+        <button
           className={`${styles.saveBtn} ${favorite ? styles.active : ''}`}
           onClick={handleSaveEvent}
           aria-label={favorite ? "Remove from favorites" : "Add to favorites"}
-         >
+        >
           {favorite ? (
             <StarFullIcon className={`${styles.icon} ${styles.full}`} />
           ) : (

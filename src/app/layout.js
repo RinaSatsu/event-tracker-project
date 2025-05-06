@@ -1,7 +1,7 @@
-import { ThemeProvider } from 'next-themes';
-import Footer from "./components/footer/footer";
-import Navbar from "./components/navbar/navbar";
 import "@/app/styles/globals.css";
+import Footer from "@/components/footer/footer";
+import Navbar from "@/components/navbar/navbar";
+import { ThemeProvider } from 'next-themes';
 
 export const metadata = {
   title: "EventHorizon",

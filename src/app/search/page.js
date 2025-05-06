@@ -1,18 +1,18 @@
 'use client'
-import { useState, React } from "react";
-import styles from "./page.module.css";
-import EventCard from "../components/eventCard/eventCard";
-import InputField from "../components/inputField/inputField";
-import ToTopButton from "../components/toTopButton/toTopButton";
-import CardContainer from "../components/cardContainer/cardContainer";
-import SearchIcon from "/public/search.svg";
-import MapIcon from "/public/map-marker.svg";
-import CalendarIcon from "/public/calendar-clock.svg";
-import ActionButton from "../components/actionButton/actionButton";
-import HeroSection from "../components/heroSection/heroSection";
-import DateInput from "../components/dateInput/dateInput";
 import fetchEvents from "@/lib/fetchEvents";
 import { getDmaIdFromCity } from "@/lib/locationService";
+import { useState } from "react";
+import ActionButton from "@/components/actionButton/actionButton";
+import CardContainer from "@/components/cardContainer/cardContainer";
+import DateInput from "@/components/dateInput/dateInput";
+import EventCard from "@/components/eventCard/eventCard";
+import HeroSection from "@/components/heroSection/heroSection";
+import InputField from "@/components/inputField/inputField";
+import ToTopButton from "@/components/toTopButton/toTopButton";
+import styles from "./page.module.css";
+import CalendarIcon from "/public/calendar-clock.svg";
+import MapIcon from "/public/map-marker.svg";
+import SearchIcon from "/public/search.svg";
 
 export default function SearchPage() {
   const [eventName, setEventName] = useState('');

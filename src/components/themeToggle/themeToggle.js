@@ -2,8 +2,8 @@
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import NightDay from "/public/night-day.svg";
 import NightDayFull from "/public/night-day-full.svg";
+import NightDay from "/public/night-day.svg";
 
 export default function ThemeToggle() {
   const { theme, setTheme } = useTheme();
@@ -13,11 +13,11 @@ export default function ThemeToggle() {
 
   if (!mounted) return null;
 
-  const handleThemeSwitch = () => setTheme(theme === 'dark' ? 'light' : 'dark'); 
+  const handleThemeSwitch = () => setTheme(theme === 'dark' ? 'light' : 'dark');
 
   return (
     <button onClick={handleThemeSwitch}>
-      {theme === 'dark' ? <NightDayFull/> : <NightDay/>}
+      {theme === 'dark' ? <NightDayFull /> : <NightDay />}
     </button>
   );
 }

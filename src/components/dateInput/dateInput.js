@@ -1,8 +1,7 @@
 'use client'
-import React from "react";
 import { useState } from "react";
 import styles from "./dateInput.module.css";
-import ArrowDown from "/public/angle-small-down.svg"
+import ArrowDown from "/public/angle-small-down.svg";
 
 function toCamelCaseId(text) {
   return text
@@ -26,10 +25,10 @@ export default function DateInput({ icon: Icon, label, ...props }) {
         <input
           id={id}
           type="date"
-          {...props} 
+          {...props}
           onChange={handleChange}
           data-filled={hasValue}
-          />
+        />
         <ArrowDown className={styles.iconOverlay} />
         <label htmlFor={id} className={styles.label}>{label}</label>
         <div className={styles.underline}></div>
