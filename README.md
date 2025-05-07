@@ -10,12 +10,12 @@ Originally developed as a college project, this app has grown into a showcase of
 
 ## Key Features
 
-### 📌 Discover Events
+### Discover Events
 The main (landing) page fetches and displays all upcoming events in **Canada** by default, using the Ticketmaster Discovery API.
 
 ![Landing Page](./screenshots/landing-page.png)
 
-### 📌 Search Events
+### Search Events
 Search for events by:
 - **Event Name**
 - **City**
@@ -25,20 +25,20 @@ Only one search field is required to perform a search.
 
 ![Search Page](./screenshots/search-page.png)
 
-### 📌 Favorites System
+### Favorites System
 Mark events as favorites using a heart icon on event cards. Favorited events:
 - Are stored in `localStorage`
 - Appear in the **List** and **Plan** pages
 - Can be unfavorited instantly (UI updates immediately)
 
-### 📌 Calendar View
+### Calendar View
 The **Plan** page includes:
 - A calendar (`react-calendar`) that highlights dates with favorited events
 - An event viewer below the calendar for the selected date
 
 ![Calendar Page](./screenshots/calendar-page.png)
 
-### 📌 Authentication
+### Authentication
 - Basic sign-up and login functionality (credentials stored in Neon PostgreSQL via Prisma)
 - Includes session check logic to route users appropriately (e.g., Profile page will redirect to Sign-In if not logged in)
 
@@ -48,18 +48,18 @@ The **Plan** page includes:
 - Profile displays username and allows fetching a list of all users from the database
 - Meant to demonstrate database connectivity and server-side functionality
 
-### 📌 Dynamic Routing
+### Dynamic Routing
 - Clicking "See More" on an event card routes to a dedicated dynamic event page
 - Includes event details, favorite button, and a link to buy tickets via Ticketmaster
 - Other dynamic routes:
   - Profile page → routes to sign-in or user dashboard depending on auth state
   - "Go Back" button → navigates using browser history
 
-### 📌 Responsive Design
+### Responsive Design
 - Event cards adjust layout for different screen sizes
 - Interactive UI with dynamic button states and smooth transitions
 
-### 📌 Dark Mode
+### Dark Mode
 
 The application includes a responsive **dark mode** toggle for improved user experience and accessibility.  
 
